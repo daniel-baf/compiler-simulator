@@ -37,7 +37,8 @@ namespace compiler_app
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (this.archiver.saveArchive(this.codeRichTextBox.Text)) { 
+            }
         }
 
         private void registrarExtensionToolStripMenuItem_Click(object sender, EventArgs e)

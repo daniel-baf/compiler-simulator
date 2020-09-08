@@ -81,6 +81,21 @@ namespace compiler_app
             return false;
         }
 
+        public Boolean saveArchive(String info) {
+            try
+            {
+                StreamWriter textToSave = File.CreateText(this.path);
+
+                textToSave.Write(info);
+                textToSave.Flush();
+                textToSave.Close();
+                
+            }
+            catch { }
+            return false;
+
+        }
+
         //----------------GETTER AND SETTER
         public String getTextFound() {
             return this.textFound;
