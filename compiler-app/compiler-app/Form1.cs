@@ -16,6 +16,5 @@ namespace compiler_app
         {
             InitializeComponent();
         }
-
     }
 }
