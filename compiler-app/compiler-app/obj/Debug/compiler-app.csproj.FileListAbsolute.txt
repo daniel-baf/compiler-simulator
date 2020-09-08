@@ -8,3 +8,4 @@ C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-ap
 C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-app.csproj.CoreCompileInputs.cache
 C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-app.exe
 C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-app.pdb
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler_app.aboutMe.resources

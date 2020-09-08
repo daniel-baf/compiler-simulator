@@ -202,6 +202,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "Acerca De";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // seeHelpToolStripMenuItem
             // 
@@ -211,6 +212,7 @@
             this.seeHelpToolStripMenuItem.Name = "seeHelpToolStripMenuItem";
             this.seeHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.seeHelpToolStripMenuItem.Text = "Ver Ayuda";
+            this.seeHelpToolStripMenuItem.Click += new System.EventHandler(this.seeHelpToolStripMenuItem_Click);
             // 
             // registrarExtensionToolStripMenuItem
             // 
@@ -283,6 +285,7 @@
             this.compileToolStripButton.Name = "compileToolStripButton";
             this.compileToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.compileToolStripButton.Text = "toolStripButton3";
+            this.compileToolStripButton.Click += new System.EventHandler(this.compileToolStripButton_Click);
             // 
             // stopToolStripButton
             // 
@@ -292,6 +295,7 @@
             this.stopToolStripButton.Name = "stopToolStripButton";
             this.stopToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.stopToolStripButton.Text = "toolStripButton5";
+            this.stopToolStripButton.Click += new System.EventHandler(this.stopToolStripButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -306,6 +310,7 @@
             this.exportToolStripButton1.Name = "exportToolStripButton1";
             this.exportToolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.exportToolStripButton1.Text = "toolStripButton1";
+            this.exportToolStripButton1.Click += new System.EventHandler(this.exportToolStripButton1_Click);
             // 
             // codeTabControl
             // 

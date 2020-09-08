@@ -14,6 +14,7 @@ namespace compiler_app
     {
 
         private Archive archiver;
+        private aboutMe aboutApp = new aboutMe();
 
         public Form1()
         {
@@ -97,6 +98,21 @@ namespace compiler_app
             newToolStripMenuItem_Click(sender, e);
         }
 
+        private void compileToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stopToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exportToolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         // ---------------------------- CUSTOM ---------------------------- //
 
         private void fontColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -112,6 +128,17 @@ namespace compiler_app
             if (this.colorDialog1.ShowDialog() != System.Windows.Forms.DialogResult.Cancel) {
                 this.codeRichTextBox.BackColor = this.colorDialog1.Color;
             }
+        }
+
+        // ---------------------------- HELP ---------------------------- //
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aboutApp.Visible = true;
+        }
+
+        private void seeHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("TENGO QUE AGREGAR UNA INFORMACIÓN O CREAR UN TXT Y ABRIRLO");
         }
     }
 }
