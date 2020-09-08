@@ -1,0 +1,10 @@
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\bin\Debug\compiler-app.exe.config
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\bin\Debug\compiler-app.exe
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\bin\Debug\compiler-app.pdb
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-app.csprojAssemblyReference.cache
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler_app.Form1.resources
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler_app.Properties.Resources.resources
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-app.csproj.GenerateResource.cache
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-app.csproj.CoreCompileInputs.cache
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-app.exe
+C:\Users\Daniel\Desktop\compiler\compiler-app\compiler-app\obj\Debug\compiler-app.pdb
