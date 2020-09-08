@@ -58,6 +58,10 @@
             this.s = new System.Windows.Forms.RichTextBox();
             this.errorTextBox = new System.Windows.Forms.TextBox();
             this.errorGridViewer = new System.Windows.Forms.DataGridView();
+            this.registrarExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.pathTextBox = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolsToolStrip.SuspendLayout();
             this.codeTabControl.SuspendLayout();
@@ -72,7 +76,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
             this.herramientasToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
+            this.ayudaToolStripMenuItem,
+            this.registrarExtensionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1069, 24);
@@ -120,6 +125,7 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Guardar";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -129,6 +135,7 @@
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Guardar Como";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -189,7 +196,7 @@
             this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.aboutToolStripMenuItem.Image = global::compiler_app.Properties.Resources.user;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.aboutToolStripMenuItem.Text = "Acerca De";
             // 
             // seeHelpToolStripMenuItem
@@ -198,7 +205,7 @@
             this.seeHelpToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.seeHelpToolStripMenuItem.Image = global::compiler_app.Properties.Resources.help;
             this.seeHelpToolStripMenuItem.Name = "seeHelpToolStripMenuItem";
-            this.seeHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seeHelpToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.seeHelpToolStripMenuItem.Text = "Ver Ayuda";
             // 
             // toolsToolStrip
@@ -289,7 +296,7 @@
             this.codeTabControl.Controls.Add(this.tabPage1);
             this.codeTabControl.Controls.Add(this.tabPage2);
             this.codeTabControl.ItemSize = new System.Drawing.Size(70, 18);
-            this.codeTabControl.Location = new System.Drawing.Point(0, 49);
+            this.codeTabControl.Location = new System.Drawing.Point(4, 54);
             this.codeTabControl.Name = "codeTabControl";
             this.codeTabControl.SelectedIndex = 0;
             this.codeTabControl.Size = new System.Drawing.Size(1069, 454);
@@ -311,7 +318,7 @@
             // 
             this.codeRichTextBox.BackColor = System.Drawing.SystemColors.WindowText;
             this.codeRichTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.codeRichTextBox.Location = new System.Drawing.Point(6, 3);
+            this.codeRichTextBox.Location = new System.Drawing.Point(6, 6);
             this.codeRichTextBox.Name = "codeRichTextBox";
             this.codeRichTextBox.Size = new System.Drawing.Size(1055, 419);
             this.codeRichTextBox.TabIndex = 0;
@@ -361,11 +368,41 @@
             this.errorGridViewer.Size = new System.Drawing.Size(1045, 84);
             this.errorGridViewer.TabIndex = 4;
             // 
+            // registrarExtensionToolStripMenuItem
+            // 
+            this.registrarExtensionToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.registrarExtensionToolStripMenuItem.Image = global::compiler_app.Properties.Resources.info;
+            this.registrarExtensionToolStripMenuItem.Name = "registrarExtensionToolStripMenuItem";
+            this.registrarExtensionToolStripMenuItem.Size = new System.Drawing.Size(135, 20);
+            this.registrarExtensionToolStripMenuItem.Text = "Registrar Extension";
+            this.registrarExtensionToolStripMenuItem.Click += new System.EventHandler(this.registrarExtensionToolStripMenuItem_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "Archive from Compiler Simulator (*.gt)|*.gt";
+            this.saveFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
+            // 
+            // pathTextBox
+            // 
+            this.pathTextBox.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.pathTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.pathTextBox.Location = new System.Drawing.Point(12, 627);
+            this.pathTextBox.Name = "pathTextBox";
+            this.pathTextBox.Size = new System.Drawing.Size(1045, 20);
+            this.pathTextBox.TabIndex = 5;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 636);
+            this.BackgroundImage = global::compiler_app.Properties.Resources.texture3;
+            this.ClientSize = new System.Drawing.Size(1069, 659);
+            this.Controls.Add(this.pathTextBox);
             this.Controls.Add(this.errorGridViewer);
             this.Controls.Add(this.errorTextBox);
             this.Controls.Add(this.codeTabControl);
@@ -374,6 +411,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolsToolStrip.ResumeLayout(false);
@@ -418,6 +456,10 @@
         private System.Windows.Forms.ToolStripMenuItem consoleColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton exportToolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem registrarExtensionToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.TextBox pathTextBox;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
