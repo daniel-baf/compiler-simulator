@@ -74,10 +74,13 @@ namespace compiler_app
                         textToSave.Flush();
                         textToSave.Close();
                     }
-                    MessageBox.Show(this.path);
+                    return true;
                 }
             }
-            catch { }
+            catch {
+                MessageBox.Show("No se pudo guardar el archivo");
+                return false;
+            }
             return false;
         }
 
@@ -89,9 +92,12 @@ namespace compiler_app
                 textToSave.Write(info);
                 textToSave.Flush();
                 textToSave.Close();
-                
+
+                MessageBox.Show("Cambios guradados");
             }
-            catch { }
+            catch {
+                MessageBox.Show("No se pudo guardar");
+            }
             return false;
 
         }
