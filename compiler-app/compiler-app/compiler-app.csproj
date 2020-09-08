@@ -46,6 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aboutMe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="aboutMe.Designer.cs">
+      <DependentUpon>aboutMe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Archive.cs" />
+    <Compile Include="extensionRegister.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +62,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="aboutMe.resx">
+      <DependentUpon>aboutMe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +92,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\icon.png" />
     <Content Include="Resources\1378860.jpg" />
     <Content Include="Resources\33.png" />
     <Content Include="Resources\47.png" />

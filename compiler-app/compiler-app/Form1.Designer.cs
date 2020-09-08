@@ -42,6 +42,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seeHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStrip = new System.Windows.Forms.ToolStrip();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -58,6 +59,10 @@
             this.s = new System.Windows.Forms.RichTextBox();
             this.errorTextBox = new System.Windows.Forms.TextBox();
             this.errorGridViewer = new System.Windows.Forms.DataGridView();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.pathTextBox = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.menuStrip1.SuspendLayout();
             this.toolsToolStrip.SuspendLayout();
             this.codeTabControl.SuspendLayout();
@@ -72,7 +77,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
             this.herramientasToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
+            this.ayudaToolStripMenuItem,
+            this.registrarExtensionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1069, 24);
@@ -99,7 +105,7 @@
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Image = global::compiler_app.Properties.Resources.open_file;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Abrir";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -109,8 +115,9 @@
             this.newToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.newToolStripMenuItem.Image = global::compiler_app.Properties.Resources.new_doc;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "Nuevo";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -118,8 +125,9 @@
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Image = global::compiler_app.Properties.Resources.floppy_disk;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Guardar";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -127,8 +135,9 @@
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Image = global::compiler_app.Properties.Resources.floppy_disk;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Guardar Como";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -150,7 +159,7 @@
             this.customToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customToolStripMenuItem.Image = global::compiler_app.Properties.Resources.pantone_guide;
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customToolStripMenuItem.Text = "Personalizar";
             // 
             // fontColorToolStripMenuItem
@@ -159,8 +168,9 @@
             this.fontColorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.fontColorToolStripMenuItem.Image = global::compiler_app.Properties.Resources.color;
             this.fontColorToolStripMenuItem.Name = "fontColorToolStripMenuItem";
-            this.fontColorToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.fontColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fontColorToolStripMenuItem.Text = "Color Fuente";
+            this.fontColorToolStripMenuItem.Click += new System.EventHandler(this.fontColorToolStripMenuItem_Click);
             // 
             // consoleColorToolStripMenuItem
             // 
@@ -168,8 +178,9 @@
             this.consoleColorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.consoleColorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("consoleColorToolStripMenuItem.Image")));
             this.consoleColorToolStripMenuItem.Name = "consoleColorToolStripMenuItem";
-            this.consoleColorToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.consoleColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.consoleColorToolStripMenuItem.Text = "Color consola";
+            this.consoleColorToolStripMenuItem.Click += new System.EventHandler(this.consoleColorToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -191,6 +202,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "Acerca De";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // seeHelpToolStripMenuItem
             // 
@@ -200,6 +212,16 @@
             this.seeHelpToolStripMenuItem.Name = "seeHelpToolStripMenuItem";
             this.seeHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.seeHelpToolStripMenuItem.Text = "Ver Ayuda";
+            this.seeHelpToolStripMenuItem.Click += new System.EventHandler(this.seeHelpToolStripMenuItem_Click);
+            // 
+            // registrarExtensionToolStripMenuItem
+            // 
+            this.registrarExtensionToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.registrarExtensionToolStripMenuItem.Image = global::compiler_app.Properties.Resources.info;
+            this.registrarExtensionToolStripMenuItem.Name = "registrarExtensionToolStripMenuItem";
+            this.registrarExtensionToolStripMenuItem.Size = new System.Drawing.Size(135, 20);
+            this.registrarExtensionToolStripMenuItem.Text = "Registrar Extension";
+            this.registrarExtensionToolStripMenuItem.Click += new System.EventHandler(this.registrarExtensionToolStripMenuItem_Click);
             // 
             // toolsToolStrip
             // 
@@ -228,6 +250,7 @@
             this.saveToolStripButton.Name = "saveToolStripButton";
             this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.saveToolStripButton.Text = "toolStripButton1";
+            this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
             // 
             // openToolStripButton
             // 
@@ -237,6 +260,7 @@
             this.openToolStripButton.Name = "openToolStripButton";
             this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.openToolStripButton.Text = "toolStripButton4";
+            this.openToolStripButton.Click += new System.EventHandler(this.openToolStripButton_Click);
             // 
             // archiveToolStripButton
             // 
@@ -246,6 +270,7 @@
             this.archiveToolStripButton.Name = "archiveToolStripButton";
             this.archiveToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.archiveToolStripButton.Text = "toolStripButton2";
+            this.archiveToolStripButton.Click += new System.EventHandler(this.archiveToolStripButton_Click);
             // 
             // toolStripSeparator1
             // 
@@ -260,6 +285,7 @@
             this.compileToolStripButton.Name = "compileToolStripButton";
             this.compileToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.compileToolStripButton.Text = "toolStripButton3";
+            this.compileToolStripButton.Click += new System.EventHandler(this.compileToolStripButton_Click);
             // 
             // stopToolStripButton
             // 
@@ -269,6 +295,7 @@
             this.stopToolStripButton.Name = "stopToolStripButton";
             this.stopToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.stopToolStripButton.Text = "toolStripButton5";
+            this.stopToolStripButton.Click += new System.EventHandler(this.stopToolStripButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -283,13 +310,14 @@
             this.exportToolStripButton1.Name = "exportToolStripButton1";
             this.exportToolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.exportToolStripButton1.Text = "toolStripButton1";
+            this.exportToolStripButton1.Click += new System.EventHandler(this.exportToolStripButton1_Click);
             // 
             // codeTabControl
             // 
             this.codeTabControl.Controls.Add(this.tabPage1);
             this.codeTabControl.Controls.Add(this.tabPage2);
             this.codeTabControl.ItemSize = new System.Drawing.Size(70, 18);
-            this.codeTabControl.Location = new System.Drawing.Point(0, 49);
+            this.codeTabControl.Location = new System.Drawing.Point(4, 54);
             this.codeTabControl.Name = "codeTabControl";
             this.codeTabControl.SelectedIndex = 0;
             this.codeTabControl.Size = new System.Drawing.Size(1069, 454);
@@ -311,7 +339,7 @@
             // 
             this.codeRichTextBox.BackColor = System.Drawing.SystemColors.WindowText;
             this.codeRichTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.codeRichTextBox.Location = new System.Drawing.Point(6, 3);
+            this.codeRichTextBox.Location = new System.Drawing.Point(6, 6);
             this.codeRichTextBox.Name = "codeRichTextBox";
             this.codeRichTextBox.Size = new System.Drawing.Size(1055, 419);
             this.codeRichTextBox.TabIndex = 0;
@@ -361,11 +389,32 @@
             this.errorGridViewer.Size = new System.Drawing.Size(1045, 84);
             this.errorGridViewer.TabIndex = 4;
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "Archive from Compiler Simulator (*.gt)|*.gt";
+            this.saveFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
+            // 
+            // pathTextBox
+            // 
+            this.pathTextBox.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.pathTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.pathTextBox.Location = new System.Drawing.Point(12, 627);
+            this.pathTextBox.Name = "pathTextBox";
+            this.pathTextBox.Size = new System.Drawing.Size(1045, 20);
+            this.pathTextBox.TabIndex = 5;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 636);
+            this.BackgroundImage = global::compiler_app.Properties.Resources.texture3;
+            this.ClientSize = new System.Drawing.Size(1069, 659);
+            this.Controls.Add(this.pathTextBox);
             this.Controls.Add(this.errorGridViewer);
             this.Controls.Add(this.errorTextBox);
             this.Controls.Add(this.codeTabControl);
@@ -374,6 +423,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolsToolStrip.ResumeLayout(false);
@@ -418,6 +468,11 @@
         private System.Windows.Forms.ToolStripMenuItem consoleColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton exportToolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem registrarExtensionToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.TextBox pathTextBox;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 
