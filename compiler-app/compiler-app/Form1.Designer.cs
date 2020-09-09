@@ -159,7 +159,7 @@
             this.customToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customToolStripMenuItem.Image = global::compiler_app.Properties.Resources.pantone_guide;
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.customToolStripMenuItem.Text = "Personalizar";
             // 
             // fontColorToolStripMenuItem
@@ -168,7 +168,7 @@
             this.fontColorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.fontColorToolStripMenuItem.Image = global::compiler_app.Properties.Resources.color;
             this.fontColorToolStripMenuItem.Name = "fontColorToolStripMenuItem";
-            this.fontColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fontColorToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.fontColorToolStripMenuItem.Text = "Color Fuente";
             this.fontColorToolStripMenuItem.Click += new System.EventHandler(this.fontColorToolStripMenuItem_Click);
             // 
@@ -178,7 +178,7 @@
             this.consoleColorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.consoleColorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("consoleColorToolStripMenuItem.Image")));
             this.consoleColorToolStripMenuItem.Name = "consoleColorToolStripMenuItem";
-            this.consoleColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.consoleColorToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.consoleColorToolStripMenuItem.Text = "Color consola";
             this.consoleColorToolStripMenuItem.Click += new System.EventHandler(this.consoleColorToolStripMenuItem_Click);
             // 
@@ -200,7 +200,7 @@
             this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.aboutToolStripMenuItem.Image = global::compiler_app.Properties.Resources.user;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.aboutToolStripMenuItem.Text = "Acerca De";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -210,7 +210,7 @@
             this.seeHelpToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.seeHelpToolStripMenuItem.Image = global::compiler_app.Properties.Resources.help;
             this.seeHelpToolStripMenuItem.Name = "seeHelpToolStripMenuItem";
-            this.seeHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seeHelpToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.seeHelpToolStripMenuItem.Text = "Ver Ayuda";
             this.seeHelpToolStripMenuItem.Click += new System.EventHandler(this.seeHelpToolStripMenuItem_Click);
             // 
@@ -337,6 +337,7 @@
             // 
             // codeRichTextBox
             // 
+            this.codeRichTextBox.AcceptsTab = true;
             this.codeRichTextBox.BackColor = System.Drawing.SystemColors.WindowText;
             this.codeRichTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.codeRichTextBox.Location = new System.Drawing.Point(6, 6);

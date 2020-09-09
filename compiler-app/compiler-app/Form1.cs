@@ -15,17 +15,21 @@ namespace compiler_app
 
         private Archive archiver;
         private aboutMe aboutApp = new aboutMe();
+        private Matcher matcher = new Matcher();
 
         public Form1()
         {
-            this.archiver = new Archive();
             InitializeComponent();
+            this.archiver = new Archive();
             myConfig();
         }
 
         private void myConfig() {
             this.codeTabControl.Visible = false;
             this.pathTextBox.Text = null;
+            this.codeRichTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+            this.codeRichTextBox.Dock = DockStyle.Fill;
+            this.codeRichTextBox.SelectionColor = Color.Red;
         }
 
        //  --------------------------------------------- -ARCHIVES ---------------------------------------------------- //
@@ -100,7 +104,10 @@ namespace compiler_app
 
         private void compileToolStripButton_Click(object sender, EventArgs e)
         {
-
+            saveToolStripMenuItem_Click(sender, e);
+            string tmpText = this.codeRichTextBox.Text;
+            this.codeRichTextBox.Text = "";
+            this.matcher.addFilter(this.codeRichTextBox, tmpText);
         }
 
         private void stopToolStripButton_Click(object sender, EventArgs e)
