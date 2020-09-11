@@ -92,8 +92,6 @@ namespace compiler_app
                 textToSave.Write(info);
                 textToSave.Flush();
                 textToSave.Close();
-
-                MessageBox.Show("Cambios guradados");
             }
             catch {
                 MessageBox.Show("No se pudo guardar");

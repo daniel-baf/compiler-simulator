@@ -106,7 +106,7 @@ namespace compiler_app
         {
             saveToolStripMenuItem_Click(sender, e);
             string tmpText = this.codeRichTextBox.Text;
-            this.codeRichTextBox.Text = "";
+            this.codeRichTextBox.Text = null;
             this.matcher.addFilter(this.codeRichTextBox, tmpText);
         }
 

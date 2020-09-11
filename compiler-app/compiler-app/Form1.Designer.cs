@@ -338,7 +338,8 @@
             // codeRichTextBox
             // 
             this.codeRichTextBox.AcceptsTab = true;
-            this.codeRichTextBox.BackColor = System.Drawing.SystemColors.WindowText;
+            this.codeRichTextBox.BackColor = System.Drawing.Color.Black;
+            this.codeRichTextBox.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeRichTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.codeRichTextBox.Location = new System.Drawing.Point(6, 6);
             this.codeRichTextBox.Name = "codeRichTextBox";
