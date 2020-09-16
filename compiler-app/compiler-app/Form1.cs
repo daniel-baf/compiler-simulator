@@ -167,9 +167,13 @@ namespace compiler_app
 
         private void tESTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.codeRichTextBox.ForeColor = Color.Black;
-            this.codeRichTextBox.BackColor = Color.White;
+            string tmp = codeRichTextBox.Text;
+            this.codeRichTextBox.Text = null;
             this.codeRichTextBox.Font = new Font("Arial Rounded MT", 15, FontStyle.Regular);
+            this.codeRichTextBox.ForeColor = Color.White;
+            this.codeRichTextBox.BackColor = Color.Black;
+            this.codeRichTextBox.Text = tmp;
+            
         }
     }
 }

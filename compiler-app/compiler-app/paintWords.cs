@@ -12,12 +12,19 @@ namespace compiler_app
 {
     class paintWords
     {
+        //NUMBERS--STATES... regex
+        Regex number = new Regex("^[0-9]+$");
+        Regex decimalNumber = new Regex("^[0-9]+[.][0-9]+$");
+        Regex boolean = new Regex("^verdadero|falso|VERDADERO|FALSO$");
+        Regex character = new Regex("^[a-z]|[A-Z]$");
+        Regex symbol = new Regex("[()!|&<>=/*+-]");
+        Regex separator = new Regex("([\\t{}():;]|/+)");
+
         private int errorCounter = 0;
         private int lineCounter = 0;
         private Color defaultTextColor;
         private ArrayList reservedWord;
         private ArrayList doubleSymbol;
-        Regex symbol = new Regex("[()!|&<>=/*+-]");
         private ErrorControl errorController;
 
         public paintWords(Color defaultTextColor)
@@ -33,7 +40,6 @@ namespace compiler_app
             //some partial REGEX
             Regex number = new Regex("^[0-9]*$");
             Regex letter = new Regex("^[A-Z]*|[a-z]$");
-
 
             //reserved words
             this.reservedWord.Add("SI");
@@ -81,90 +87,69 @@ namespace compiler_app
             try
             {
                 string word = "";
-                for (int i = 0; i < arrayChars.Length; i++)
-                {
-                    paint(codeRichTextBox, arrayChars[i], this.defaultTextColor);
-                }
-
-                codeRichTextBox.SelectedText = "\n-------------------\n";
 
                 for (int i = 0; i < arrayChars.Length; i++)
                 {
-                    isJumpLine(arrayChars[i]);//if we have a \n counts it
+                    isJumpLine(arrayChars[i]);
 
                     if (i < arrayChars.Length - 1)
                     {
-                        if (isShortComment(arrayChars[i], arrayChars[i + 1]) == true && wrote == false)
+                        if (isShortComment(arrayChars[i], arrayChars[i + 1]) == true)
                         {
                             do//here´s esaier, i just need to expect a jumpline buuut, te comment can be in a last line, so that´s why the condition || x>length
                             {
-                                if (isJumpLine(arrayChars[i]) || i >= arrayChars.Length)
-                                {//when the jumplines is make stop painting
-                                    continueD = false;
-                                }
-                                else
-                                {
-                                    paint(codeRichTextBox, arrayChars[i], Color.Red);
-                                    i++;
-                                }
-                            } while (continueD == true);
-                            wrote = true;
+                                paint(codeRichTextBox, arrayChars[i], Color.Red);
+                                i++;
+                            } while (arrayChars[i] != '\n' && i<arrayChars.Length);
+                            isJumpLine(arrayChars[i]);
                         }
-
-                        if (isbeginLongComment(arrayChars[i], arrayChars[i + 1]) == true && wrote == false)
+                        
+                        if (isbeginLongComment(arrayChars[i], arrayChars[i + 1]) == true)
                         {
-                            do//if we get here, IDM what comes, is a comment until get a */
+                            paint2chars(codeRichTextBox, arrayChars[i], arrayChars[i + 1], Color.Red);
+                            i += 2;
+                            while (isEndLongComment(arrayChars[i], arrayChars[i + 1]) == false && i < arrayChars.Length - 1)//if we get here, IDM what comes, is a comment until get a */
                             {
-                                if (i >= arrayChars.Length - 1 || isEndLongComment(arrayChars[i], arrayChars[i + 1]))
-                                {
-                                    continueD = false;
-                                }
-                                else
-                                {
-                                    isJumpLine(arrayChars[i]);//counts
-                                    paint(codeRichTextBox, arrayChars[i], Color.Red);
-                                    i++;
-                                }
-                            } while (continueD == true);
+                                isJumpLine(arrayChars[i]);//counts
+                                paint(codeRichTextBox, arrayChars[i], Color.Red);
+                                i++;
+                            }
 
-                            if (i < arrayChars.Length)//here, we found a */ so ther is no problem
+                            if (i >= arrayChars.Length)
                             {
-                                paint2chars(codeRichTextBox, arrayChars[i], arrayChars[i + 1], Color.Red);
-                                i += 2;
+                                if (!isEndLongComment(arrayChars[i], arrayChars[i + 1]))
+                                {
+                                    this.errorController.addError(errorGridViewer, this.lineCounter, 1);//error, no */ found
+                                }
                             }
-                            else
-                            {//ended all the program and found no */ so gets a error
-                                errorController.addError(errorGridViewer, this.lineCounter, 1);
-                                this.errorCounter++;
-                                continueD = true;
+                            else {
+                                if (isEndLongComment(arrayChars[i], arrayChars[i + 1]))
+                                {
+                                    paint2chars(codeRichTextBox, arrayChars[i], arrayChars[i + 1], Color.Red);
+                                    i += 2;
+                                }
                             }
-                            wrote = true;
                         }
-
-                        if (this.doubleSymbol.Contains("" + arrayChars[i] + arrayChars[i+1]))
+                        
+                        if (this.doubleSymbol.Contains("" + arrayChars[i] + arrayChars[i + 1]) && wrote ==false)
                         {
                             paint2chars(codeRichTextBox, arrayChars[i], arrayChars[i], Color.Blue);
                             wrote = true;
-                            i+=2;
+                            i += 2;
                         }
+                        isJumpLine(arrayChars[i]);
                     }
-
-                    if (arrayChars[i] == ' ')
-                    {//this part is ´cause we r reading step by step, and maybe, we get an e or space after a comment or sign
-                        paint(codeRichTextBox, arrayChars[i], this.defaultTextColor);
-                        i++;
-                    }
-
+                    //MAYBE A STRING
                     if (arrayChars[i] == '"' && wrote == false)
                     {
                         do
                         {
-                            if (isJumpLine(arrayChars[i]))
+                            if (isJumpLine(arrayChars[i]))//never found a " so is an error
                             {
                                 errorController.addError(errorGridViewer, this.lineCounter, 2);
-                                paintString(word, Color.LightGreen, codeRichTextBox);
-                                word = "\n";
+                                word += arrayChars[i];
                                 wrote = true;
+                                i++;
                             }
                             else
                             {
@@ -172,49 +157,28 @@ namespace compiler_app
                             }
                             i++;
                         } while (arrayChars[i] != '"' && wrote == false);
-                        
-                        if (wrote == false) {
+
+                        if (wrote == false) {//this is 'cause the only way to stop a string is with a \n giving an error or closing the "
                             word += arrayChars[i];
                             i++;
                         }
                         paintString(word, Color.LightGreen, codeRichTextBox);
-                        wrote = true;
-                        
-                    }//if isnt a comment
-
-                    if (wrote == false)//LOOKING ESPECIFY WORDS
-                    {
-                        if (symbol.IsMatch("" + arrayChars[i]))
-                        {
-                            paint(codeRichTextBox, arrayChars[i], Color.Blue);
-                            wrote = true;
-                            i++;
-                        }
-                        else if (arrayChars[i] == '=' || arrayChars[i] == ';')//this are special words, onlty this two are pink
-                        {
-                            paint(codeRichTextBox, arrayChars[i], Color.DeepPink);
-                            wrote = true;
-                            i++;
-                        }
-                        else {//to make it easier, i think look for a reserved word is good idead
-                            
-                        }
-
-                        /*do
-                        {
-                            word += arrayChars[i];
-                            if (searchReservedWord(word) == true)//lookiing for SI/SINO/...
-                            {
-                                paintString(word, Color.Green, codeRichTextBox);
-                                wrote = true;
-                                word = "";
-                            }
-                            i++;
-                        } while (arrayChars[i] != '\n');*/
                     }
 
-                    if (i < arrayChars.Length)
+                    if (symbol.IsMatch("" + arrayChars[i]))
                     {
+                        paint(codeRichTextBox, arrayChars[i], Color.Blue);
+                        wrote = true;
+                        i++;
+                    }
+                    else if (arrayChars[i] == '=' || arrayChars[i] == ';')//this are special words, onlty this two are pink
+                    {
+                        paint(codeRichTextBox, arrayChars[i], Color.DeepPink);
+                        wrote = true;
+                        i++;
+                    }
+
+                    if (i < arrayChars.Length) { 
                         paint(codeRichTextBox, arrayChars[i], this.defaultTextColor);
                     }
                     wrote = false;
@@ -224,6 +188,14 @@ namespace compiler_app
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        private Boolean isNumber(string word)
+        {
+            if (this.number.IsMatch(word))
+                return true;
+
+            return false;
         }
 
         private void paintString(string txt, Color color, RichTextBox codeRichTextBox)
@@ -246,11 +218,8 @@ namespace compiler_app
         private Boolean isJumpLine(char c)
         {
             if (c == '\n')
-            {
                 this.lineCounter++;
-                return true;
-            }
-            return false;
+            return c == '\n';
         }
 
         private void paint2chars(RichTextBox codeRichTextBox, char c1, char c2, Color color)
@@ -265,31 +234,18 @@ namespace compiler_app
             codeRichTextBox.SelectedText = "" + c;
         }
 
-
         private Boolean isbeginLongComment(char c1, char c2)
         {
-            if (c1 == '/' && c2 == '*')
-                return true;
-            else
-                return false;
+            return c1 == '/' && c2 == '*';
         }
 
         private Boolean isEndLongComment(char c1, char c2)
         {
-            if (c1 == '*' && c2 == '/')
-                return true;
-            else return false;
+            return c1 == '*' && c2 == '/';
         }
-
         public Boolean isShortComment(char c1, char c2)
         {
-            Boolean match = false;
-            if (c1 == c2)
-            {
-                if (c1 == '/')
-                    match = true;
-            }
-            return match;
+            return c1 == c2 && c1 == '/';
         }
     }
 }

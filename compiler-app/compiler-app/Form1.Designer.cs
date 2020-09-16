@@ -60,14 +60,14 @@
             this.s = new System.Windows.Forms.RichTextBox();
             this.errorTextBox = new System.Windows.Forms.TextBox();
             this.errorGridViewer = new System.Windows.Forms.DataGridView();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.pathTextBox = new System.Windows.Forms.TextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ID_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.line_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.text_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.info_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.pathTextBox = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.menuStrip1.SuspendLayout();
             this.toolsToolStrip.SuspendLayout();
             this.codeTabControl.SuspendLayout();
@@ -110,7 +110,7 @@
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Image = global::compiler_app.Properties.Resources.open_file;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Abrir";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -120,7 +120,7 @@
             this.newToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.newToolStripMenuItem.Image = global::compiler_app.Properties.Resources.new_doc;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "Nuevo";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -130,7 +130,7 @@
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Image = global::compiler_app.Properties.Resources.floppy_disk;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Guardar";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -140,7 +140,7 @@
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Image = global::compiler_app.Properties.Resources.floppy_disk;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Guardar Como";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -190,6 +190,9 @@
             // 
             // testToolStrip
             // 
+            this.testToolStrip.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.testToolStrip.ForeColor = System.Drawing.Color.White;
+            this.testToolStrip.Image = global::compiler_app.Properties.Resources._49;
             this.testToolStrip.Name = "testToolStrip";
             this.testToolStrip.Size = new System.Drawing.Size(180, 22);
             this.testToolStrip.Text = "TEST";
@@ -412,25 +415,6 @@
             this.errorGridViewer.Size = new System.Drawing.Size(1045, 84);
             this.errorGridViewer.TabIndex = 4;
             // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.DefaultExt = "Archive from Compiler Simulator (*.gt)|*.gt";
-            this.saveFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
-            // 
-            // pathTextBox
-            // 
-            this.pathTextBox.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.pathTextBox.ForeColor = System.Drawing.Color.Maroon;
-            this.pathTextBox.Location = new System.Drawing.Point(12, 627);
-            this.pathTextBox.Name = "pathTextBox";
-            this.pathTextBox.Size = new System.Drawing.Size(1045, 20);
-            this.pathTextBox.TabIndex = 5;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
-            // 
             // ID_error
             // 
             this.ID_error.HeaderText = "ID";
@@ -452,6 +436,25 @@
             this.info_error.HeaderText = "MENSAJE";
             this.info_error.Name = "info_error";
             this.info_error.Width = 701;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "Archive from Compiler Simulator (*.gt)|*.gt";
+            this.saveFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
+            // 
+            // pathTextBox
+            // 
+            this.pathTextBox.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.pathTextBox.ForeColor = System.Drawing.Color.Maroon;
+            this.pathTextBox.Location = new System.Drawing.Point(12, 627);
+            this.pathTextBox.Name = "pathTextBox";
+            this.pathTextBox.Size = new System.Drawing.Size(1045, 20);
+            this.pathTextBox.TabIndex = 5;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
             // 
             // Form1
             // 
