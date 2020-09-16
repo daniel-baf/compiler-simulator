@@ -39,6 +39,7 @@
             this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seeHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +64,10 @@
             this.pathTextBox = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.ID_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.line_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.text_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.info_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.toolsToolStrip.SuspendLayout();
             this.codeTabControl.SuspendLayout();
@@ -105,7 +110,7 @@
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Image = global::compiler_app.Properties.Resources.open_file;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Abrir";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -115,7 +120,7 @@
             this.newToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.newToolStripMenuItem.Image = global::compiler_app.Properties.Resources.new_doc;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "Nuevo";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -125,7 +130,7 @@
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Image = global::compiler_app.Properties.Resources.floppy_disk;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Guardar";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -135,7 +140,7 @@
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Image = global::compiler_app.Properties.Resources.floppy_disk;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Guardar Como";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -143,7 +148,8 @@
             // 
             this.herramientasToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customToolStripMenuItem});
+            this.customToolStripMenuItem,
+            this.testToolStrip});
             this.herramientasToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.herramientasToolStripMenuItem.Image = global::compiler_app.Properties.Resources.tools;
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
@@ -159,7 +165,7 @@
             this.customToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customToolStripMenuItem.Image = global::compiler_app.Properties.Resources.pantone_guide;
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customToolStripMenuItem.Text = "Personalizar";
             // 
             // fontColorToolStripMenuItem
@@ -181,6 +187,13 @@
             this.consoleColorToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.consoleColorToolStripMenuItem.Text = "Color consola";
             this.consoleColorToolStripMenuItem.Click += new System.EventHandler(this.consoleColorToolStripMenuItem_Click);
+            // 
+            // testToolStrip
+            // 
+            this.testToolStrip.Name = "testToolStrip";
+            this.testToolStrip.Size = new System.Drawing.Size(180, 22);
+            this.testToolStrip.Text = "TEST";
+            this.testToolStrip.Click += new System.EventHandler(this.tESTToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -343,7 +356,7 @@
             this.codeRichTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.codeRichTextBox.Location = new System.Drawing.Point(6, 6);
             this.codeRichTextBox.Name = "codeRichTextBox";
-            this.codeRichTextBox.Size = new System.Drawing.Size(1055, 419);
+            this.codeRichTextBox.Size = new System.Drawing.Size(1055, 416);
             this.codeRichTextBox.TabIndex = 0;
             this.codeRichTextBox.Text = "";
             // 
@@ -385,9 +398,18 @@
             // 
             // errorGridViewer
             // 
+            this.errorGridViewer.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.errorGridViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.errorGridViewer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID_error,
+            this.line_error,
+            this.text_error,
+            this.info_error});
+            this.errorGridViewer.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.errorGridViewer.Location = new System.Drawing.Point(12, 530);
             this.errorGridViewer.Name = "errorGridViewer";
+            this.errorGridViewer.ReadOnly = true;
+            this.errorGridViewer.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.errorGridViewer.Size = new System.Drawing.Size(1045, 84);
             this.errorGridViewer.TabIndex = 4;
             // 
@@ -409,6 +431,31 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
+            // 
+            // ID_error
+            // 
+            this.ID_error.HeaderText = "ID";
+            this.ID_error.Name = "ID_error";
+            this.ID_error.ReadOnly = true;
+            // 
+            // line_error
+            // 
+            this.line_error.HeaderText = "LINEA";
+            this.line_error.Name = "line_error";
+            this.line_error.ReadOnly = true;
+            // 
+            // text_error
+            // 
+            this.text_error.HeaderText = "TOKEN";
+            this.text_error.Name = "text_error";
+            this.text_error.ReadOnly = true;
+            // 
+            // info_error
+            // 
+            this.info_error.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.info_error.HeaderText = "MENSAJE";
+            this.info_error.Name = "info_error";
+            this.info_error.ReadOnly = true;
             // 
             // Form1
             // 
@@ -475,6 +522,11 @@
         private System.Windows.Forms.TextBox pathTextBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ToolStripMenuItem testToolStrip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_error;
+        private System.Windows.Forms.DataGridViewTextBoxColumn line_error;
+        private System.Windows.Forms.DataGridViewTextBoxColumn text_error;
+        private System.Windows.Forms.DataGridViewTextBoxColumn info_error;
     }
 }
 

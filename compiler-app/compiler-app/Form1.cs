@@ -13,30 +13,36 @@ namespace compiler_app
     public partial class Form1 : Form
     {
 
-        private Archive archiver;
-        private aboutMe aboutApp = new aboutMe();
-        private Matcher matcher = new Matcher();
+        private Archive archiver;//open, save... documents
+        private aboutMe aboutApp; //show info
+        private Matcher matcher; // if matches with something, paints it
+        private paintWords painter;
 
         public Form1()
         {
             InitializeComponent();
             this.archiver = new Archive();
+            this.aboutApp = new aboutMe();
+            //this.matcher = new Matcher();
             myConfig();
         }
 
-        private void myConfig() {
+        /*
+         * the path is null
+         */
+        private void myConfig()
+        {
             this.codeTabControl.Visible = false;
             this.pathTextBox.Text = null;
-            this.codeRichTextBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-            this.codeRichTextBox.Dock = DockStyle.Fill;
             this.codeRichTextBox.SelectionColor = Color.Red;
         }
 
-       //  --------------------------------------------- -ARCHIVES ---------------------------------------------------- //
+        //  --------------------------------------------- -ARCHIVES ---------------------------------------------------- //
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if (this.archiver.openArchive(this.openFileDialog1)) {
+            if (this.archiver.openArchive(this.openFileDialog1))
+            {
                 this.codeTabControl.Visible = true;
                 this.codeRichTextBox.Text = this.archiver.getTextFound();
                 this.pathTextBox.Text = this.archiver.getPath();
@@ -59,19 +65,27 @@ namespace compiler_app
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.codeTabControl.Visible == true){
-                if (this.pathTextBox.Text == null || this.pathTextBox.Text == "") {
+            if (this.codeTabControl.Visible == true)
+            {
+                if (this.pathTextBox.Text == null || this.pathTextBox.Text == "")
+                {
                     saveAsToolStripMenuItem_Click(sender, e);
-                }else {
+                }
+                else
+                {
                     this.archiver.saveArchive(this.codeRichTextBox.Text);
                 }
-            }else {
+            }
+            else
+            {
                 MessageBox.Show("No hay documentos abiertos");
             }
         }
 
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (this.archiver.saveAsArchive(this.saveFileDialog1, codeRichTextBox.Text)) {
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.archiver.saveAsArchive(this.saveFileDialog1, codeRichTextBox.Text))
+            {
                 this.pathTextBox.Text = this.archiver.getPath();
             }
         }
@@ -89,12 +103,12 @@ namespace compiler_app
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-            saveToolStripMenuItem_Click(sender,e);
+            saveToolStripMenuItem_Click(sender, e);
         }
 
         private void archiveToolStripButton_Click(object sender, EventArgs e)
         {
-            openToolStripMenuItem_Click(sender,e);
+            openToolStripMenuItem_Click(sender, e);
         }
 
         private void openToolStripButton_Click(object sender, EventArgs e)
@@ -104,10 +118,12 @@ namespace compiler_app
 
         private void compileToolStripButton_Click(object sender, EventArgs e)
         {
+            this.painter = new paintWords(this.codeRichTextBox.ForeColor);
             saveToolStripMenuItem_Click(sender, e);
             string tmpText = this.codeRichTextBox.Text;
             this.codeRichTextBox.Text = null;
-            this.matcher.addFilter(this.codeRichTextBox, tmpText);
+            this.painter.paintBox(tmpText,this.codeRichTextBox, this.errorGridViewer);
+            //this.matcher.addFilter(this.codeRichTextBox, tmpText);
         }
 
         private void stopToolStripButton_Click(object sender, EventArgs e)
@@ -132,7 +148,8 @@ namespace compiler_app
 
         private void consoleColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.colorDialog1.ShowDialog() != System.Windows.Forms.DialogResult.Cancel) {
+            if (this.colorDialog1.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+            {
                 this.codeRichTextBox.BackColor = this.colorDialog1.Color;
             }
         }
@@ -146,6 +163,13 @@ namespace compiler_app
         private void seeHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("TENGO QUE AGREGAR UNA INFORMACIÓN O CREAR UN TXT Y ABRIRLO");
+        }
+
+        private void tESTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.codeRichTextBox.ForeColor = Color.Black;
+            this.codeRichTextBox.BackColor = Color.White;
+            this.codeRichTextBox.Font = new Font("Arial Rounded MT", 15, FontStyle.Regular);
         }
     }
 }

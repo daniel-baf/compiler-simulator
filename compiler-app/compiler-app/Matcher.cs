@@ -20,7 +20,8 @@ namespace compiler_app
         // ****************************************** END SPECIAL WORDS ****************************************** //
 
         // ****************************************** START REGEX ****************************************** //
-        Regex separator = new Regex("([\\t{}():;])");
+        //Regex separator = new Regex("([\\t{}():;])");
+        Regex separator = new Regex("([\\t{}():;]|/+)");
         // ------------------------------------------------------------------------------------------------- //
         // ****************************************** END REGEX ****************************************** //
 
@@ -30,35 +31,18 @@ namespace compiler_app
 
         public void addFilter(RichTextBox codeRichTextBox, string text)
         {
-            string[] lines = text.Split('\n');
+            string[] lines = text.Split('\n');//split a rich text box in line texts
             Color fontColor = codeRichTextBox.ForeColor;
-            Boolean isComment = false;
-
 
             int n = 0;
-            foreach (string tmp in lines)
+            foreach (string tmp in lines)//each line cane be splited by tokens like: TOKEN 1 (TOKEN 2) { TOKEN 3 }
             {
-                //verify a commnent
-                string[] lookingComment = tmp.Split(' ');
-                for (int i = 0; i < lookingComment.Length - 1; i++) {
-                    if (lookingComment[i] == lookingComment[i + 1]) {
-                        isComment = true;
-                    }
-                }
-
                 codeRichTextBox.SelectionColor = fontColor;
                 codeRichTextBox.SelectionFont = new Font("Arial Rounded MT", 15, FontStyle.Regular);
 
-                if (!isComment)
-                {
-                    ParseLine(tmp, codeRichTextBox);
-                }
-                else {
-                    codeRichTextBox.SelectionColor = Color.Red;
-                    codeRichTextBox.SelectedText = tmp + " ";
-                }
+                ParseLine(tmp, codeRichTextBox);
 
-                if (n < lines.Length - 1)
+                if (n < lines.Length - 1)//jumps line
                 {
                     codeRichTextBox.SelectedText = "\n";
                     n++;
@@ -70,9 +54,19 @@ namespace compiler_app
         {
             Color fontColor = codeRichTextBox.ForeColor;
             string[] tokens = separator.Split(line);
+            Boolean isComment = false;
+
             foreach (string token in tokens)
             {
-                splitParseLine(token, codeRichTextBox);
+                if (token == "//" || isComment == true) 
+                {
+                    codeRichTextBox.SelectionColor = Color.Red;
+                    codeRichTextBox.SelectedText = token + " ";
+                    isComment = true;
+                }
+                else { 
+                    splitParseLine(token, codeRichTextBox);
+                }
             }
         }
 
@@ -83,6 +77,7 @@ namespace compiler_app
 
             Boolean done = false;
 
+            int n = 0;
             foreach (var word in auxSplitWord)
             {
                 codeRichTextBox.SelectionFont = new Font("Arial Rounded MT", 15, FontStyle.Regular);
@@ -123,7 +118,7 @@ namespace compiler_app
                     }
                     else if (word == "=" || word == ";")
                     {
-                        codeRichTextBox.SelectionColor = Color.Black;
+                        codeRichTextBox.SelectionColor = Color.Pink;
                         done = false;
                     }
 
@@ -183,7 +178,12 @@ namespace compiler_app
                             }
                         }
                     }
-                    codeRichTextBox.SelectedText = word + " ";
+
+                    codeRichTextBox.SelectedText = word;
+                    if (n < auxSplitWord.Length - 1)
+                        codeRichTextBox.SelectedText = " ";
+
+                    n++;
                     done = false;
                 }
             }
