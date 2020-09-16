@@ -408,7 +408,6 @@
             this.errorGridViewer.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.errorGridViewer.Location = new System.Drawing.Point(12, 530);
             this.errorGridViewer.Name = "errorGridViewer";
-            this.errorGridViewer.ReadOnly = true;
             this.errorGridViewer.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.errorGridViewer.Size = new System.Drawing.Size(1045, 84);
             this.errorGridViewer.TabIndex = 4;
@@ -436,26 +435,23 @@
             // 
             this.ID_error.HeaderText = "ID";
             this.ID_error.Name = "ID_error";
-            this.ID_error.ReadOnly = true;
             // 
             // line_error
             // 
             this.line_error.HeaderText = "LINEA";
             this.line_error.Name = "line_error";
-            this.line_error.ReadOnly = true;
             // 
             // text_error
             // 
             this.text_error.HeaderText = "TOKEN";
             this.text_error.Name = "text_error";
-            this.text_error.ReadOnly = true;
             // 
             // info_error
             // 
-            this.info_error.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.info_error.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.info_error.HeaderText = "MENSAJE";
             this.info_error.Name = "info_error";
-            this.info_error.ReadOnly = true;
+            this.info_error.Width = 701;
             // 
             // Form1
             // 

@@ -10,15 +10,17 @@ namespace compiler_app
     class ErrorControl
     {
 
-        private string[] errorToken = new string[] { "/*", "*/" };
-        private string[] errorMessage = new string[] { "Hemos encontrado un cierre de comentario largo pero no apertura",
-                "Hemos encontrado una apertura de comentario largo pero no un cierre"};
+        private string[] errorToken = new string[] { "/*", "*/", "comillas"};
+        private string[] errorMessage = new string[] { "No se colocó apertura", "No se colocó cierre",
+                "Has colocado comillas y no se han cerrado antes de dar un salto de linea"};
+        private string[] IDerrors = new string[] { "AA-01", "AA-02", "AA-02"};
 
         public ErrorControl(){ 
             
         }
 
-        public void addError(DataGridView errorGridViewer, int ID, int line, int errorCode) {
+        public void addError(DataGridView errorGridViewer, int line, int errorCode) {
+            string ID = this.IDerrors[errorCode];
             string tokenMessage = "NA";
             string message = "No reconocemos tu error, trabajaremos en ello";
             tokenMessage = this.errorToken[errorCode]; 
