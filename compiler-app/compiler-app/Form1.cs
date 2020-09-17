@@ -129,7 +129,8 @@ namespace compiler_app
             saveToolStripMenuItem_Click(sender, e);
             string tmpText = this.codeRichTextBox.Text;
             this.codeRichTextBox.Text = null;
-            this.painter.paintBox(tmpText,this.codeRichTextBox, this.errorGridViewer);
+            this.painter.paintTestint(tmpText,this.codeRichTextBox,this.errorGridViewer);
+            //this.painter.paintBox(tmpText,this.codeRichTextBox, this.errorGridViewer);
             //this.matcher.addFilter(this.codeRichTextBox, tmpText);
         }
 

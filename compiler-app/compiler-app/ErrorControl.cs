@@ -10,11 +10,16 @@ namespace compiler_app
     class ErrorControl
     {
 
-        private string[] errorToken = new string[] { "/*", "*/", "comillas", "SINO", "SINO_SI"};
-        private string[] errorMessage = new string[] { "No se colocó apertura", "No se colocó cierre",
-                "Has colocado comillas y no se han cerrado antes de dar un salto de linea",
-                "No se completó la palabra SINO", "No se ha completado un SINO_SI"};
-        private string[] IDerrors = new string[] { "AA-01", "AA-02", "AA-02", "AA-03","AA-04"};
+        private string[] errorToken = new string[] { "/*", "*/", "comillas", "SINO", "SINO_SI","DECIMAL","salto de linea"};
+        private string[] errorMessage = new string[] { 
+            "No se colocó apertura", 
+            "No se colocó cierre",
+            "Has colocado comillas y no se han cerrado antes de dar un salto de linea",
+            "No se completó la palabra SINO", 
+            "No se ha completado un SINO_SI",
+            "No se ha completado el numero, se encontró un \"\\.\"\\",
+            "Se dio un salto de linea sin cerrar comillas"};
+        private string[] IDerrors = new string[] { "AA-01", "AA-02", "AA-03", "AA-05","AA-05", "AA-06", "BB-01"};
 
         public ErrorControl(){ 
             
