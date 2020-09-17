@@ -32,7 +32,7 @@ namespace compiler_app
             row.Cells[0].Value = ID;
             row.Cells[1].Value = line;
             row.Cells[2].Value = tokenMessage;
-            row.Cells[3].Value = errorMessage;
+            row.Cells[3].Value = message;
             errorGridViewer.Rows.Add(row);
         }
     }

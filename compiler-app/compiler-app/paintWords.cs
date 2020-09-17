@@ -80,7 +80,6 @@ namespace compiler_app
             char[] arrayChars = text.ToCharArray();
 
             //COMMENTS CONTROLLER
-            Boolean continueD = true;
             Boolean wrote = false;
 
             //START PAINTING

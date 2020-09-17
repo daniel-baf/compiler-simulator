@@ -100,6 +100,62 @@ namespace compiler_app
 
         }
 
+        //----------------EXPORTS
+        public Boolean exportArchive(DataGridView table, SaveFileDialog saveFileDialog)
+        {
+            try
+            {
+                int counter = 0;
+                string information = "";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {//if press OK
+
+                    for (int i = 0; i < table.Rows.Count - 1; i++)
+                    {
+                        information += "ERROR No " + counter + ": \n\t";
+                        counter++;
+                        for (int j = 0; j < table.Columns.Count; j++)
+                        {
+                            information += table.Rows[i].Cells[j].Value.ToString();
+                            if (j < table.Columns.Count - 1)
+                                information += ",\t";
+                        }
+                        information += "\n";
+                    }
+
+                    if (File.Exists(saveFileDialog.FileName))
+                    {//if exists a name
+                        
+
+                        this.path = saveFileDialog.FileName;//save the name on the Dialog
+
+                        StreamWriter textToSave = File.CreateText(this.path);
+
+                        textToSave.Write(information);
+                        textToSave.Flush();
+                        textToSave.Close();
+                    }
+                    else
+                    {
+                        this.path = saveFileDialog.FileName;//save the name on the Dialog
+
+                        StreamWriter textToSave = File.CreateText(this.path);
+
+                        textToSave.Write(information);
+                        textToSave.Flush();
+                        textToSave.Close();
+                    }
+                    return true;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo guardar el archivo");
+                return false;
+            }
+            return false;
+        }
+
         //----------------GETTER AND SETTER
         public String getTextFound() {
             return this.textFound;

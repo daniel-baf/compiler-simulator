@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace compiler_app
 {
-    public partial class Form1 : Form
+    public partial class IDE : Form
     {
 
         private Archive archiver;//open, save... documents
@@ -18,7 +18,7 @@ namespace compiler_app
         private Matcher matcher; // if matches with something, paints it
         private paintWords painter;
 
-        public Form1()
+        public IDE()
         {
             InitializeComponent();
             this.archiver = new Archive();
@@ -40,8 +40,7 @@ namespace compiler_app
         //  --------------------------------------------- -ARCHIVES ---------------------------------------------------- //
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            if (this.archiver.openArchive(this.openFileDialog1))
+            if (this.archiver.openArchive(this.openFileDialogGT))
             {
                 this.codeTabControl.Visible = true;
                 this.codeRichTextBox.Text = this.archiver.getTextFound();
@@ -52,7 +51,15 @@ namespace compiler_app
         private void registrarExtensionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             extensionRegister tmp = new extensionRegister();
-            tmp.registerExtension();
+            if (tmp.registerExtension())
+            {
+                MessageBox.Show("Extension registrada");
+            }
+            else
+                MessageBox.Show("Error al registrar las extensiones gt y gtE");
+
+            
+            
         }
 
 
@@ -84,7 +91,7 @@ namespace compiler_app
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.archiver.saveAsArchive(this.saveFileDialog1, codeRichTextBox.Text))
+            if (this.archiver.saveAsArchive(this.saveFileDialogGT, codeRichTextBox.Text))
             {
                 this.pathTextBox.Text = this.archiver.getPath();
             }
@@ -133,7 +140,14 @@ namespace compiler_app
 
         private void exportToolStripButton1_Click(object sender, EventArgs e)
         {
-
+            if (this.archiver.exportArchive(this.errorGridViewer, this.saveFileDialogGTE))
+            {
+                MessageBox.Show("Archivo guardado");
+                this.pathTextBox.Text = this.archiver.getPath();
+            }
+            else {
+                MessageBox.Show("No se logro guardar el archivo");
+            }
         }
 
         // ---------------------------- CUSTOM ---------------------------- //
@@ -174,6 +188,34 @@ namespace compiler_app
             this.codeRichTextBox.BackColor = Color.Black;
             this.codeRichTextBox.Text = tmp;
             
+        }
+
+
+        // ---------------------------- EXPORT ---------------------------- //
+        private void abrirArchivoGTEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.archiver.openArchive(this.openFileDialogGTE))
+            {
+                this.codeRichTextBox.Visible = true;
+                this.codeTabControl.Visible = true;
+                this.exportationOppens.Text = this.archiver.getTextFound();
+                this.gtePathLabel.Text = this.archiver.getPath();
+            }
+        }
+
+        private void clearnErrorButton_Click(object sender, EventArgs e)
+        {
+            this.errorGridViewer = null;
+        }
+
+        private void hideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.codeTabControl.Visible = false;
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.codeTabControl.Visible = true;
         }
     }
 }

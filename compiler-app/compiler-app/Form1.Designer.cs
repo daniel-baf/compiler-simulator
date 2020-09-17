@@ -1,6 +1,6 @@
 ﻿namespace compiler_app
 {
-    partial class Form1
+    partial class IDE
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IDE));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirArchivoGTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +45,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seeHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventanaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStrip = new System.Windows.Forms.ToolStrip();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -53,21 +57,25 @@
             this.stopToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exportToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.clearnErrorButton = new System.Windows.Forms.ToolStripButton();
             this.codeTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.codeRichTextBox = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.s = new System.Windows.Forms.RichTextBox();
+            this.exportationOppens = new System.Windows.Forms.RichTextBox();
             this.errorTextBox = new System.Windows.Forms.TextBox();
             this.errorGridViewer = new System.Windows.Forms.DataGridView();
             this.ID_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.line_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.text_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.info_error = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.message = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveFileDialogGT = new System.Windows.Forms.SaveFileDialog();
             this.pathTextBox = new System.Windows.Forms.TextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialogGT = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.openFileDialogGTE = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogGTE = new System.Windows.Forms.SaveFileDialog();
+            this.gtePathLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.toolsToolStrip.SuspendLayout();
             this.codeTabControl.SuspendLayout();
@@ -83,7 +91,8 @@
             this.archivoToolStripMenuItem,
             this.herramientasToolStripMenuItem,
             this.ayudaToolStripMenuItem,
-            this.registrarExtensionToolStripMenuItem});
+            this.registrarExtensionToolStripMenuItem,
+            this.ventanaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1069, 24);
@@ -97,7 +106,8 @@
             this.openToolStripMenuItem,
             this.newToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.saveAsToolStripMenuItem,
+            this.abrirArchivoGTEToolStripMenuItem});
             this.archivoToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.archivoToolStripMenuItem.Image = global::compiler_app.Properties.Resources.folder;
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
@@ -110,7 +120,7 @@
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Image = global::compiler_app.Properties.Resources.open_file;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.openToolStripMenuItem.Text = "Abrir";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -120,7 +130,7 @@
             this.newToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.newToolStripMenuItem.Image = global::compiler_app.Properties.Resources.new_doc;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.newToolStripMenuItem.Text = "Nuevo";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -130,7 +140,7 @@
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Image = global::compiler_app.Properties.Resources.floppy_disk;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.saveToolStripMenuItem.Text = "Guardar";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -140,9 +150,19 @@
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Image = global::compiler_app.Properties.Resources.floppy_disk;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.saveAsToolStripMenuItem.Text = "Guardar Como";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // abrirArchivoGTEToolStripMenuItem
+            // 
+            this.abrirArchivoGTEToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.abrirArchivoGTEToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.abrirArchivoGTEToolStripMenuItem.Image = global::compiler_app.Properties.Resources.add_tab;
+            this.abrirArchivoGTEToolStripMenuItem.Name = "abrirArchivoGTEToolStripMenuItem";
+            this.abrirArchivoGTEToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.abrirArchivoGTEToolStripMenuItem.Text = "Abrir Archivo GTE";
+            this.abrirArchivoGTEToolStripMenuItem.Click += new System.EventHandler(this.abrirArchivoGTEToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -165,7 +185,7 @@
             this.customToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customToolStripMenuItem.Image = global::compiler_app.Properties.Resources.pantone_guide;
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.customToolStripMenuItem.Text = "Personalizar";
             // 
             // fontColorToolStripMenuItem
@@ -194,7 +214,7 @@
             this.testToolStrip.ForeColor = System.Drawing.Color.White;
             this.testToolStrip.Image = global::compiler_app.Properties.Resources._49;
             this.testToolStrip.Name = "testToolStrip";
-            this.testToolStrip.Size = new System.Drawing.Size(180, 22);
+            this.testToolStrip.Size = new System.Drawing.Size(137, 22);
             this.testToolStrip.Text = "TEST";
             this.testToolStrip.Click += new System.EventHandler(this.tESTToolStripMenuItem_Click);
             // 
@@ -239,6 +259,37 @@
             this.registrarExtensionToolStripMenuItem.Text = "Registrar Extension";
             this.registrarExtensionToolStripMenuItem.Click += new System.EventHandler(this.registrarExtensionToolStripMenuItem_Click);
             // 
+            // ventanaToolStripMenuItem
+            // 
+            this.ventanaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hideToolStripMenuItem,
+            this.showToolStripMenuItem});
+            this.ventanaToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ventanaToolStripMenuItem.Image = global::compiler_app.Properties.Resources.Computer_On;
+            this.ventanaToolStripMenuItem.Name = "ventanaToolStripMenuItem";
+            this.ventanaToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.ventanaToolStripMenuItem.Text = "Ventana";
+            // 
+            // hideToolStripMenuItem
+            // 
+            this.hideToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.hideToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.hideToolStripMenuItem.Image = global::compiler_app.Properties.Resources.Graphite_Desktop;
+            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hideToolStripMenuItem.Text = "Ocultar";
+            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.showToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.showToolStripMenuItem.Image = global::compiler_app.Properties.Resources.radar;
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showToolStripMenuItem.Text = "Mostrar";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
             // toolsToolStrip
             // 
             this.toolsToolStrip.BackColor = System.Drawing.SystemColors.Desktop;
@@ -250,7 +301,8 @@
             this.compileToolStripButton,
             this.stopToolStripButton,
             this.toolStripSeparator2,
-            this.exportToolStripButton1});
+            this.exportToolStripButton1,
+            this.clearnErrorButton});
             this.toolsToolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolsToolStrip.Margin = new System.Windows.Forms.Padding(2);
             this.toolsToolStrip.Name = "toolsToolStrip";
@@ -328,6 +380,16 @@
             this.exportToolStripButton1.Text = "toolStripButton1";
             this.exportToolStripButton1.Click += new System.EventHandler(this.exportToolStripButton1_Click);
             // 
+            // clearnErrorButton
+            // 
+            this.clearnErrorButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.clearnErrorButton.Image = global::compiler_app.Properties.Resources.quit;
+            this.clearnErrorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.clearnErrorButton.Name = "clearnErrorButton";
+            this.clearnErrorButton.Size = new System.Drawing.Size(23, 22);
+            this.clearnErrorButton.Text = "toolStripButton1";
+            this.clearnErrorButton.Click += new System.EventHandler(this.clearnErrorButton_Click);
+            // 
             // codeTabControl
             // 
             this.codeTabControl.Controls.Add(this.tabPage1);
@@ -338,9 +400,11 @@
             this.codeTabControl.SelectedIndex = 0;
             this.codeTabControl.Size = new System.Drawing.Size(1069, 454);
             this.codeTabControl.TabIndex = 2;
+            this.codeTabControl.Tag = "";
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.DimGray;
             this.tabPage1.BackgroundImage = global::compiler_app.Properties.Resources.texture3;
             this.tabPage1.Controls.Add(this.codeRichTextBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -348,8 +412,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1061, 428);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Text = "Archivos .gt";
             // 
             // codeRichTextBox
             // 
@@ -357,33 +420,34 @@
             this.codeRichTextBox.BackColor = System.Drawing.Color.Black;
             this.codeRichTextBox.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeRichTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.codeRichTextBox.Location = new System.Drawing.Point(6, 6);
+            this.codeRichTextBox.Location = new System.Drawing.Point(0, 0);
             this.codeRichTextBox.Name = "codeRichTextBox";
-            this.codeRichTextBox.Size = new System.Drawing.Size(1055, 416);
+            this.codeRichTextBox.Size = new System.Drawing.Size(1049, 416);
             this.codeRichTextBox.TabIndex = 0;
             this.codeRichTextBox.Text = "";
             // 
             // tabPage2
             // 
             this.tabPage2.BackgroundImage = global::compiler_app.Properties.Resources.texture3;
-            this.tabPage2.Controls.Add(this.s);
+            this.tabPage2.Controls.Add(this.exportationOppens);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1061, 428);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Archivos .gtE";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // s
+            // exportationOppens
             // 
-            this.s.BackColor = System.Drawing.SystemColors.WindowText;
-            this.s.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.s.Location = new System.Drawing.Point(3, 6);
-            this.s.Name = "s";
-            this.s.Size = new System.Drawing.Size(1058, 416);
-            this.s.TabIndex = 0;
-            this.s.Text = "";
+            this.exportationOppens.BackColor = System.Drawing.SystemColors.WindowText;
+            this.exportationOppens.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportationOppens.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.exportationOppens.Location = new System.Drawing.Point(3, 6);
+            this.exportationOppens.Name = "exportationOppens";
+            this.exportationOppens.Size = new System.Drawing.Size(1058, 416);
+            this.exportationOppens.TabIndex = 0;
+            this.exportationOppens.Text = "";
             // 
             // errorTextBox
             // 
@@ -407,7 +471,7 @@
             this.ID_error,
             this.line_error,
             this.text_error,
-            this.info_error});
+            this.message});
             this.errorGridViewer.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.errorGridViewer.Location = new System.Drawing.Point(12, 530);
             this.errorGridViewer.Name = "errorGridViewer";
@@ -430,17 +494,16 @@
             this.text_error.HeaderText = "TOKEN";
             this.text_error.Name = "text_error";
             // 
-            // info_error
+            // message
             // 
-            this.info_error.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.info_error.HeaderText = "MENSAJE";
-            this.info_error.Name = "info_error";
-            this.info_error.Width = 701;
+            this.message.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.message.HeaderText = "MENSAJE";
+            this.message.Name = "message";
             // 
-            // saveFileDialog1
+            // saveFileDialogGT
             // 
-            this.saveFileDialog1.DefaultExt = "Archive from Compiler Simulator (*.gt)|*.gt";
-            this.saveFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
+            this.saveFileDialogGT.DefaultExt = "Archive from Compiler Simulator (*.gt)|*.gt";
+            this.saveFileDialogGT.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
             // 
             // pathTextBox
             // 
@@ -451,17 +514,36 @@
             this.pathTextBox.Size = new System.Drawing.Size(1045, 20);
             this.pathTextBox.TabIndex = 5;
             // 
-            // openFileDialog1
+            // openFileDialogGT
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
+            this.openFileDialogGT.FileName = "openFileDialog1";
+            this.openFileDialogGT.Filter = "Archive from Compiler Simulator (*.gt)|*.gt";
             // 
-            // Form1
+            // openFileDialogGTE
+            // 
+            this.openFileDialogGTE.FileName = "openFileDialog1";
+            this.openFileDialogGTE.Filter = "Export from Compiler Simulator(*.gtE| *.gtE";
+            // 
+            // saveFileDialogGTE
+            // 
+            this.saveFileDialogGTE.Filter = "Export from Compiler Simulator(*.gtE| *.gtE";
+            // 
+            // gtePathLabel
+            // 
+            this.gtePathLabel.AutoSize = true;
+            this.gtePathLabel.Location = new System.Drawing.Point(1022, 514);
+            this.gtePathLabel.Name = "gtePathLabel";
+            this.gtePathLabel.Size = new System.Drawing.Size(36, 13);
+            this.gtePathLabel.TabIndex = 1;
+            this.gtePathLabel.Text = "PATH";
+            // 
+            // IDE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::compiler_app.Properties.Resources.texture3;
             this.ClientSize = new System.Drawing.Size(1069, 659);
+            this.Controls.Add(this.gtePathLabel);
             this.Controls.Add(this.pathTextBox);
             this.Controls.Add(this.errorGridViewer);
             this.Controls.Add(this.errorTextBox);
@@ -469,7 +551,7 @@
             this.Controls.Add(this.toolsToolStrip);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "IDE";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -508,7 +590,7 @@
         private System.Windows.Forms.TabControl codeTabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.RichTextBox s;
+        private System.Windows.Forms.RichTextBox exportationOppens;
         private System.Windows.Forms.RichTextBox codeRichTextBox;
         private System.Windows.Forms.TextBox errorTextBox;
         private System.Windows.Forms.DataGridView errorGridViewer;
@@ -517,15 +599,23 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton exportToolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem registrarExtensionToolStripMenuItem;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogGT;
         private System.Windows.Forms.TextBox pathTextBox;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialogGT;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStripMenuItem testToolStrip;
+        private System.Windows.Forms.ToolStripButton clearnErrorButton;
+        private System.Windows.Forms.ToolStripMenuItem abrirArchivoGTEToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialogGTE;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogGTE;
+        private System.Windows.Forms.Label gtePathLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_error;
         private System.Windows.Forms.DataGridViewTextBoxColumn line_error;
         private System.Windows.Forms.DataGridViewTextBoxColumn text_error;
-        private System.Windows.Forms.DataGridViewTextBoxColumn info_error;
+        private System.Windows.Forms.DataGridViewTextBoxColumn message;
+        private System.Windows.Forms.ToolStripMenuItem ventanaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
     }
 }
 
