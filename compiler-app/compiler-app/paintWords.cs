@@ -13,13 +13,10 @@ namespace compiler_app
     class paintWords
     {
         //NUMBERS--STATES... regex
-        Regex number = new Regex("^[0-9]+$");
-        Regex decimalNumber = new Regex("^[0-9]+[.][0-9]+$");
-        Regex boolean = new Regex("^verdadero|falso|VERDADERO|FALSO$");
-        Regex letter = new Regex("[a-z]|[A-Z]");
-        Regex character = new Regex("^[a-z]|[A-Z]$");
-        Regex symbol = new Regex("[{}()!|&<>/*+-]");
-        Regex separator = new Regex("([\\t{}()<>:;]|/+)");
+        private Regex number = new Regex("^[0-9]+$");
+        private Regex boolean = new Regex("^verdadero|falso|VERDADERO|FALSO$");
+        private Regex letter = new Regex("[a-z]|[A-Z]");
+        private Regex symbol = new Regex("[{}()!|&<>/*+-]");
 
         private int lineCounter = 0;
         private Color defaultTextColor;
@@ -222,6 +219,9 @@ namespace compiler_app
                                 caseActive = 0;
                                 actualColor = this.defaultTextColor;
                             }
+                            int k = i+1;
+                            if (k >= arrayChars.Length-1 && actionActive == true)
+                                this.errorController.addError(errorGridViewer, this.lineCounter, 0);
                         }
                         else if (caseActive == 3) {
                             if (arrayChars[i] == '"')
@@ -230,9 +230,8 @@ namespace compiler_app
                                 caseActive = 0;
                                 actualColor = this.defaultTextColor;
                             }
-                            else if (arrayChars[i] == '\n') {
+                            else if (arrayChars[i] == '\n' &&actionActive == true) {
                                 this.errorController.addError(errorGridViewer, this.lineCounter, 2);
-                                this.errorController.addError(errorGridViewer,this.lineCounter,6);
                                 actionActive = false;
                                 caseActive = 0;
                                 actualColor = this.defaultTextColor;

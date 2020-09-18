@@ -140,7 +140,6 @@
             this.textBoxDescription.BackColor = System.Drawing.SystemColors.ControlText;
             this.textBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxDescription.Enabled = false;
             this.textBoxDescription.ForeColor = System.Drawing.Color.Transparent;
             this.textBoxDescription.Location = new System.Drawing.Point(218, 111);
             this.textBoxDescription.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
