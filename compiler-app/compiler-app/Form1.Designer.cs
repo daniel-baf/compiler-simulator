@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IDE));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +77,8 @@
             this.openFileDialogGTE = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialogGTE = new System.Windows.Forms.SaveFileDialog();
             this.gtePathLabel = new System.Windows.Forms.Label();
+            this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolsToolStrip.SuspendLayout();
             this.codeTabControl.SuspendLayout();
@@ -276,7 +279,7 @@
             this.hideToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.hideToolStripMenuItem.Image = global::compiler_app.Properties.Resources.Graphite_Desktop;
             this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
-            this.hideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.hideToolStripMenuItem.Text = "Ocultar";
             this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
             // 
@@ -286,7 +289,7 @@
             this.showToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.showToolStripMenuItem.Image = global::compiler_app.Properties.Resources.radar;
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.showToolStripMenuItem.Text = "Mostrar";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
@@ -417,6 +420,7 @@
             // codeRichTextBox
             // 
             this.codeRichTextBox.AcceptsTab = true;
+            this.autocompleteMenu1.SetAutocompleteMenu(this.codeRichTextBox, this.autocompleteMenu1);
             this.codeRichTextBox.BackColor = System.Drawing.Color.Black;
             this.codeRichTextBox.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeRichTextBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -440,6 +444,7 @@
             // 
             // exportationOppens
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.exportationOppens, null);
             this.exportationOppens.BackColor = System.Drawing.SystemColors.WindowText;
             this.exportationOppens.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportationOppens.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -451,6 +456,7 @@
             // 
             // errorTextBox
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.errorTextBox, null);
             this.errorTextBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.errorTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.errorTextBox.Enabled = false;
@@ -507,6 +513,7 @@
             // 
             // pathTextBox
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.pathTextBox, null);
             this.pathTextBox.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.pathTextBox.ForeColor = System.Drawing.Color.Maroon;
             this.pathTextBox.Location = new System.Drawing.Point(12, 627);
@@ -536,6 +543,28 @@
             this.gtePathLabel.Size = new System.Drawing.Size(36, 13);
             this.gtePathLabel.TabIndex = 1;
             this.gtePathLabel.Text = "PATH";
+            // 
+            // autocompleteMenu1
+            // 
+            this.autocompleteMenu1.Colors = ((AutocompleteMenuNS.Colors)(resources.GetObject("autocompleteMenu1.Colors")));
+            this.autocompleteMenu1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.autocompleteMenu1.ImageList = this.imageList1;
+            this.autocompleteMenu1.Items = new string[] {
+        "SI () {}",
+        "SINO {}",
+        "SINO ENTONCES {}",
+        "SINO_SI () {}",
+        "entero",
+        "decimal",
+        "caracter",
+        "cadena"};
+            this.autocompleteMenu1.TargetControlWrapper = null;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // IDE
             // 
@@ -616,6 +645,8 @@
         private System.Windows.Forms.ToolStripMenuItem ventanaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
+        private AutocompleteMenuNS.AutocompleteMenu autocompleteMenu1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

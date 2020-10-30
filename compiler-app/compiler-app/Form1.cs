@@ -15,7 +15,6 @@ namespace compiler_app
 
         private Archive archiver;//open, save... documents
         private aboutMe aboutApp; //show info
-        private Matcher matcher; // if matches with something, paints it
         private paintWords painter;
 
         public IDE()
