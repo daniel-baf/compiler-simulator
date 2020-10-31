@@ -16,7 +16,7 @@ namespace compiler_app
         //NUMBERS--STATES... regex
         private Regex number = new Regex("[0-9]");
         private Regex letter = new Regex("[a-z]|[A-Z]");
-        private readonly Regex symbol = new Regex("[{}()!|&<>/*+:`~!#$%^,.-]");
+        private Regex symbol = new Regex("[{}()!|&<>?/*+:`~!#$%^,.-]");
 
         private int lineCounter = 0;
         private Color defaultTextColor;
@@ -54,12 +54,18 @@ namespace compiler_app
             this.reservedWord.Add("HASTA");
             this.reservedWord.Add("INCREMENTO");
             this.reservedWord.Add("ENTONCES");
+            this.reservedWord.Add("PRINCIPAL");
+            this.reservedWord.Add("IMPRIMIR");
+            this.reservedWord.Add("LEER");
+            this.reservedWord.Add("PROCESO");
+            this.reservedWord.Add("SUB_PROCESO");
+            this.reservedWord.Add("ESCRIBIR");
+            this.reservedWord.Add("APLICACION");
 
             this.specialWords.Add("entero");
             this.specialWords.Add("decimal");
             this.specialWords.Add("cadena");
             this.specialWords.Add("booleano");
-            this.specialWords.Add("carácter");
             this.specialWords.Add("caracter");
         }
 
@@ -120,21 +126,28 @@ namespace compiler_app
                     }
                 }
                 //looking a "text"
-                if (arrayChars[i] == '"' && i < arrayChars.Length) {
+                if (arrayChars[i] == '\"' && i < arrayChars.Length) {
                     do
                     {
                         actionActive = true;
                         actualToken += arrayChars[i].ToString();
                         i++;
+
                         continueD = i < arrayChars.Length;
-                        if (continueD && arrayChars[i] == '"')
-                        {
-                            continueD = false;
-                            actionActive = false;
-                            actualToken += arrayChars[i].ToString();
-                            i++;
+                        
+                        if (continueD) {
+                            if (arrayChars[i] == '\"')
+                            {
+                                continueD = false;
+                                actionActive = false;
+                                actualToken += arrayChars[i].ToString();
+                                i++;    
+                            }
+                            else if (arrayChars[i] == '\n') {
+                                continueD = false;
+                            }
                         }
-                    } while (continueD && arrayChars[i] != '\n');
+                    } while (continueD);
                     paintString(actualToken, Color.Gray, codeRichTextBox);
                     actualToken = "";//add a token to lexical analythics
                     // MANAGE ERROR
@@ -150,9 +163,24 @@ namespace compiler_app
                     if (arrayChars[i] == '=' || arrayChars[i] == ';')
                     {
                         actualToken = arrayChars[i].ToString();
-                        paint(codeRichTextBox, arrayChars[i], Color.Pink);
+                        actualColor = Color.Pink;
                         i++;
-                        actualToken = "";//add to token list
+                        try 
+                        {
+                            if (arrayChars[i] == arrayChars[i - 1] && arrayChars[i] == '=') {
+                                actualColor = Color.DarkBlue;
+                                actualToken += arrayChars[i];
+                                i++;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            actualColor = Color.Pink;
+                        }
+                        finally {
+                            paintString(actualToken,actualColor,codeRichTextBox);
+                            actualToken = "";//add to token list
+                        }
                     }
                 }
 

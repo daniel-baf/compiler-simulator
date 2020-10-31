@@ -393,16 +393,6 @@ namespace compiler_app.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Stripes3 {
-            get {
-                object obj = ResourceManager.GetObject("Stripes3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap terminal_icon {
             get {
                 object obj = ResourceManager.GetObject("terminal-icon", resourceCulture);

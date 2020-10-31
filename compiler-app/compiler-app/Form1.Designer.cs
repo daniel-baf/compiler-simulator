@@ -550,14 +550,28 @@
             this.autocompleteMenu1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.autocompleteMenu1.ImageList = this.imageList1;
             this.autocompleteMenu1.Items = new string[] {
-        "SI () {}",
-        "SINO {}",
-        "SINO ENTONCES {}",
-        "SINO_SI () {}",
+        "SI",
+        "SINO",
+        "SINO_SI",
+        "MIENTRAS",
+        "HACER",
+        "DESDE",
+        "HASTA",
+        "INCREMENTO",
+        "ENTONCES",
+        "PRINCIPAL",
+        "IMPRIMIR LEER",
+        "ESCRIBIR",
+        "LEER",
+        "PROCESO",
+        "SUB_PROCESO",
+        "APLICACION",
         "entero",
         "decimal",
+        "cadena",
+        "booleano",
         "caracter",
-        "cadena"};
+        ""};
             this.autocompleteMenu1.TargetControlWrapper = null;
             // 
             // imageList1

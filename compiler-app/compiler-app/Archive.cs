@@ -15,13 +15,10 @@ namespace compiler_app
         private String textFound = null;
         private String path = null;
 
-        public Archive () { 
-            
-        }
+        public Archive () {}
 
         public Boolean openArchive(OpenFileDialog openFileDialog) {
             try {
-
                 openFileDialog.InitialDirectory = "c:\\";//main window
                 openFileDialog.FilterIndex = 1;
 
@@ -109,7 +106,6 @@ namespace compiler_app
                 string information = "";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {//if press OK
-
                     for (int i = 0; i < table.Rows.Count - 1; i++)
                     {
                         information += "ERROR No " + counter + ": \n\t";
@@ -160,7 +156,6 @@ namespace compiler_app
         public String getTextFound() {
             return this.textFound;
         }
-
         public String getPath() {
             return this.path;
         }

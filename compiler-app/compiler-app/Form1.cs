@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace compiler_app
@@ -22,7 +16,6 @@ namespace compiler_app
             InitializeComponent();
             this.archiver = new Archive();
             this.aboutApp = new aboutMe();
-            //this.matcher = new Matcher();
             myConfig();
         }
 
@@ -51,21 +44,13 @@ namespace compiler_app
         {
             extensionRegister tmp = new extensionRegister();
             if (tmp.registerExtension())
-            {
                 MessageBox.Show("Extension registrada");
-            }
             else
                 MessageBox.Show("Error al registrar las extensiones gt y gtE");
-
-            
-            
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Form1_Load(object sender, EventArgs e) { }
 
         // ---------------------------- TOOLSTRIP ITEMS ---------------------------- //
 
@@ -74,13 +59,9 @@ namespace compiler_app
             if (this.codeTabControl.Visible == true)
             {
                 if (this.pathTextBox.Text == null || this.pathTextBox.Text == "")
-                {
                     saveAsToolStripMenuItem_Click(sender, e);
-                }
                 else
-                {
                     this.archiver.saveArchive(this.codeRichTextBox.Text);
-                }
             }
             else
             {
@@ -91,9 +72,7 @@ namespace compiler_app
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.archiver.saveAsArchive(this.saveFileDialogGT, codeRichTextBox.Text))
-            {
                 this.pathTextBox.Text = this.archiver.getPath();
-            }
         }
 
 
@@ -129,14 +108,10 @@ namespace compiler_app
             string tmpText = this.codeRichTextBox.Text;
             this.codeRichTextBox.Text = null;
             this.painter.paintTestint(tmpText,this.codeRichTextBox,this.errorGridViewer);
-            //this.painter.paintBox(tmpText,this.codeRichTextBox, this.errorGridViewer);
-            //this.matcher.addFilter(this.codeRichTextBox, tmpText);
         }
 
         private void stopToolStripButton_Click(object sender, EventArgs e)
-        {
-
-        }
+        {}
 
         private void exportToolStripButton1_Click(object sender, EventArgs e)
         {
@@ -155,17 +130,13 @@ namespace compiler_app
         private void fontColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.colorDialog1.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
-            {
                 this.codeRichTextBox.ForeColor = this.colorDialog1.Color;
-            }
         }
 
         private void consoleColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.colorDialog1.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
-            {
                 this.codeRichTextBox.BackColor = this.colorDialog1.Color;
-            }
         }
 
         // ---------------------------- HELP ---------------------------- //
@@ -189,7 +160,6 @@ namespace compiler_app
             this.codeRichTextBox.Text = tmp;
             
         }
-
 
         // ---------------------------- EXPORT ---------------------------- //
         private void abrirArchivoGTEToolStripMenuItem_Click(object sender, EventArgs e)
