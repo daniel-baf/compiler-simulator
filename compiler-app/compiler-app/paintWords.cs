@@ -75,6 +75,7 @@ namespace compiler_app
         public void paintTestint(String text, RichTextBox codeRichTextBox, DataGridView errorGridViewer)
         {
             errorController = new ErrorControl();//adds errors
+            
             codeRichTextBox.SelectionColor = this.defaultTextColor;//the default text color
             char[] arrayChars = text.ToCharArray();//each char in the code
 
@@ -86,49 +87,12 @@ namespace compiler_app
 
             Color actualColor = this.defaultTextColor;
             for (int i = 0; i < arrayChars.Length; i++) {
-                if (i < arrayChars.Length - 1)
-                {
-                    if (isShortComment(arrayChars[i], arrayChars[i + 1]))//only a doble / open the special case 1
-                    {
-                        actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
-                        i += 2;
-                        if (i < arrayChars.Length) do
-                            {
-                                actualToken += arrayChars[i].ToString();
-                                continueD = arrayChars[i] != '\n';
-                                i++;
-                            } while (continueD && i < arrayChars.Length);
-                        paintString(actualToken, Color.Red, codeRichTextBox);
-                        actualToken = "";//restart
-                    } else if (isbeginLongComment(arrayChars[i], arrayChars[i + 1])) { // this ends anly with an * /
-                        actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
-                        i += 2;
-                        if (i < arrayChars.Length - 1) do
-                            {
-                                actionActive = true;
-                                actualToken += arrayChars[i].ToString();
-                                continueD = !isEndLongComment(arrayChars[i], arrayChars[i + 1]);
-                                i++;
-                                if (!continueD) {
-                                    actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
-                                    i += 2;
-                                    actionActive = false;
-                                }
-                            } while (continueD && i < arrayChars.Length - 1);
-                        paintString(actualToken, Color.Red, codeRichTextBox);
-                        actualToken = "";// i have to add the token
-                    }
-
-                    //MANAGE ERROR
-                    if (actionActive) {
-                        actionActive = false;
-                        MessageBox.Show("agregar el error de  no cierre");
-                    }
-                }
+                isJumpLine(arrayChars[i]);
                 //looking a "text"
                 if (arrayChars[i] == '\"' && i < arrayChars.Length) {
                     do
                     {
+                        isJumpLine(arrayChars[i]);
                         actionActive = true;
                         actualToken += arrayChars[i].ToString();
                         i++;
@@ -141,10 +105,12 @@ namespace compiler_app
                                 continueD = false;
                                 actionActive = false;
                                 actualToken += arrayChars[i].ToString();
-                                i++;    
+                                i++;
+                                isJumpLine(arrayChars[i]);
                             }
                             else if (arrayChars[i] == '\n') {
                                 continueD = false;
+                                isJumpLine(arrayChars[i]);
                             }
                         }
                     } while (continueD);
@@ -154,7 +120,7 @@ namespace compiler_app
                     if (actionActive)
                     {
                         actionActive = false;
-                        MessageBox.Show("tengo que agregar error de no cierre string");
+                        errorController.addError(errorGridViewer,lineCounter,1);
                     }
                 }
 
@@ -162,15 +128,18 @@ namespace compiler_app
                 if (i < arrayChars.Length) {
                     if (arrayChars[i] == '=' || arrayChars[i] == ';')
                     {
+                        isJumpLine(arrayChars[i]);
                         actualToken = arrayChars[i].ToString();
                         actualColor = Color.Pink;
                         i++;
+                        isJumpLine(arrayChars[i]);
                         try 
                         {
                             if (arrayChars[i] == arrayChars[i - 1] && arrayChars[i] == '=') {
                                 actualColor = Color.DarkBlue;
                                 actualToken += arrayChars[i];
                                 i++;
+                                isJumpLine(arrayChars[i]);
                             }
                         }
                         catch (Exception e)
@@ -186,6 +155,7 @@ namespace compiler_app
 
                 if (this.symbol.IsMatch(arrayChars[i].ToString()) && i < arrayChars.Length) do
                     {
+                        isJumpLine(arrayChars[i]);
                         actualToken += arrayChars[i];
                         paint(codeRichTextBox, arrayChars[i], Color.DarkBlue);
                         i++;
@@ -200,6 +170,7 @@ namespace compiler_app
                     int dotCounter = 0;
                     do
                     {
+                        isJumpLine(arrayChars[i]);
                         actualToken += arrayChars[i].ToString();
                         i++;
                         continueD = i < arrayChars.Length;
@@ -227,6 +198,7 @@ namespace compiler_app
                 {
                     do
                     {
+                        isJumpLine(arrayChars[i]);
                         actualToken += arrayChars[i].ToString();
                         i++;
                         continueD = i < arrayChars.Length;
@@ -261,8 +233,58 @@ namespace compiler_app
                         actualToken = "";//add to token list
                     }
                 }
-                
-                if(i < arrayChars.Length){
+
+                if (i < arrayChars.Length - 1)
+                {
+                    if (isShortComment(arrayChars[i], arrayChars[i + 1]))//only a doble / open the special case 1
+                    {
+                        actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
+                        i += 2;
+                        isJumpLine(arrayChars[i]);
+                        if (i < arrayChars.Length) do
+                            {
+                                actualToken += arrayChars[i].ToString();
+                                continueD = arrayChars[i] != '\n';
+                                i++;
+                                isJumpLine(arrayChars[i]);
+                            } while (continueD && i < arrayChars.Length);
+                        paintString(actualToken, Color.Red, codeRichTextBox);
+                        actualToken = "";//restart
+                    }
+                    else if (isbeginLongComment(arrayChars[i], arrayChars[i + 1]))
+                    { // this ends anly with an * /
+                        actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
+                        i += 2;
+                        isJumpLine(arrayChars[i]);
+                        if (i < arrayChars.Length - 1) do
+                            {
+                                actionActive = true;
+                                actualToken += arrayChars[i].ToString();
+                                continueD = !isEndLongComment(arrayChars[i], arrayChars[i + 1]);
+                                i++;
+                                isJumpLine(arrayChars[i]);
+                                if (!continueD)
+                                {
+                                    actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
+                                    i += 2;
+                                    isJumpLine(arrayChars[i]);
+                                    actionActive = false;
+                                }
+                            } while (continueD && i < arrayChars.Length - 1);
+                        paintString(actualToken, Color.Red, codeRichTextBox);
+                        actualToken = "";// i have to add the token
+                    }
+
+                    //MANAGE ERROR
+                    if (actionActive)
+                    {
+                        actionActive = false;
+                        errorController.addError(errorGridViewer, lineCounter, 0);//0 is for long comments no close
+                    }
+                }
+
+                if (i < arrayChars.Length){
+                    isJumpLine(arrayChars[i]);
                     paint(codeRichTextBox, arrayChars[i], actualColor);
                 }   
             }
@@ -274,22 +296,11 @@ namespace compiler_app
             codeRichTextBox.SelectedText = txt;
         }
 
-        private Boolean searchReservedWord(string word)
-        {
-            return this.reservedWord.Contains(word);
-        }
-
         private Boolean isJumpLine(char c)
         {
             if (c == '\n')
                 this.lineCounter++;
             return c == '\n';
-        }
-
-        private void paint2chars(RichTextBox codeRichTextBox, char c1, char c2, Color color)
-        {
-            codeRichTextBox.SelectionColor = color;
-            codeRichTextBox.SelectedText = "" + c1 + c2;
         }
 
         private void paint(RichTextBox codeRichTextBox, char c, Color color)
