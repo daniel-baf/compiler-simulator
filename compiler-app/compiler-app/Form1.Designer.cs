@@ -79,6 +79,7 @@
             this.gtePathLabel = new System.Windows.Forms.Label();
             this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolsToolStrip.SuspendLayout();
             this.codeTabControl.SuspendLayout();
@@ -580,6 +581,10 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "dot files (*.dot|*.dot|All files (*.*)|*.*";
+            // 
             // IDE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -661,6 +666,7 @@
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
         private AutocompleteMenuNS.AutocompleteMenu autocompleteMenu1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

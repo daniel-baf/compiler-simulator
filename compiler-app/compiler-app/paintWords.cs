@@ -73,7 +73,7 @@ namespace compiler_app
         /*
          * get the text and gives colors
          */
-        public void paintTestint(String text, RichTextBox codeRichTextBox, DataGridView errorGridViewer)
+        public void paintTestint(String text, RichTextBox codeRichTextBox, DataGridView errorGridViewer, SaveFileDialog saveFileDialog)
         {
 
             List<Token> tokens = new List<Token>();
@@ -314,7 +314,8 @@ namespace compiler_app
                 }   
             }
 
-
+            GraphvizDrawer gpd = new GraphvizDrawer(tokens);
+            gpd.createImg(saveFileDialog);
         }
 
         private void paintString(string txt, Color color, RichTextBox codeRichTextBox)
