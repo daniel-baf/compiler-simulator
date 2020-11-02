@@ -9,7 +9,6 @@ namespace compiler_app
 {
     class ErrorControl
     {
-
         private string[] errorToken = new string[] {"/*","\""};
         private string[] errorMessage = new string[] {"No se ha cerrado el comentario largo", 
             "No se ha cerrado la asignación de la cadena"};

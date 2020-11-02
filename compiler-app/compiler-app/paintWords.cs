@@ -19,6 +19,7 @@ namespace compiler_app
         private Regex symbol = new Regex("[{}()!|&<>?/*+:`~!#$%^,.-]");
 
         private int lineCounter = 0;
+        private int idCounter = 0;
         private Color defaultTextColor;
         private ArrayList reservedWord;
         private ArrayList specialWords;
@@ -74,13 +75,15 @@ namespace compiler_app
          */
         public void paintTestint(String text, RichTextBox codeRichTextBox, DataGridView errorGridViewer)
         {
+
+            List<Token> tokens = new List<Token>();
+
             errorController = new ErrorControl();//adds errors
             
             codeRichTextBox.SelectionColor = this.defaultTextColor;//the default text color
             char[] arrayChars = text.ToCharArray();//each char in the code
 
             Boolean actionActive = false;//we r looking comments or a sentence
-            int caseActive = 0;//1 is short comment, 2 is long commetn, 3 is a string
             Boolean continueD = false;
 
             String actualToken = "";
@@ -115,6 +118,8 @@ namespace compiler_app
                         }
                     } while (continueD);
                     paintString(actualToken, Color.Gray, codeRichTextBox);
+                    tokens.Add(new Token(actualToken, "string", this.lineCounter, this.idCounter));
+                    this.idCounter++;
                     actualToken = "";//add a token to lexical analythics
                     // MANAGE ERROR
                     if (actionActive)
@@ -148,6 +153,8 @@ namespace compiler_app
                         }
                         finally {
                             paintString(actualToken,actualColor,codeRichTextBox);
+                            tokens.Add(new Token(actualToken,"asign",this.lineCounter,this.idCounter));
+                            this.idCounter++;
                             actualToken = "";//add to token list
                         }
                     }
@@ -163,6 +170,8 @@ namespace compiler_app
                         if (continueD)
                             continueD = this.symbol.IsMatch(arrayChars[i].ToString());
                         if (!continueD) {
+                            tokens.Add(new Token(actualToken, "symbol", this.lineCounter, this.idCounter));
+                            this.idCounter++;
                             actualToken = ""; // add to token list
                         }
                     } while (continueD);
@@ -183,15 +192,21 @@ namespace compiler_app
                     } while (continueD);
                     if (dotCounter > 1)
                     {
+                        tokens.Add(new Token(actualToken, "error", this.lineCounter, this.idCounter));
+                        this.idCounter++;
                         MessageBox.Show("tengo que mostrar error de más de 2 puntos en numeros");
                     }
                     else if (dotCounter == 0)
                     {
                         paintString(actualToken, Color.Purple, codeRichTextBox);
+                        tokens.Add(new Token(actualToken, "int", this.lineCounter, this.idCounter));
+                        this.idCounter++;
                         actualToken = "";//add to token list
                     }
                     else {
                         paintString(actualToken, Color.Cyan, codeRichTextBox);
+                        tokens.Add(new Token(actualToken, "double", this.lineCounter, this.idCounter));
+                        this.idCounter++;
                         actualToken = "";//add to token list
                     }
                 } else if (this.letter.IsMatch(arrayChars[i].ToString()) && i < arrayChars.Length)//search reserved words or id
@@ -211,25 +226,35 @@ namespace compiler_app
                     if (actualToken.Length == 1)
                     {
                         paintString(actualToken, Color.Brown, codeRichTextBox);
+                        tokens.Add(new Token(actualToken, "char", this.lineCounter, this.idCounter));
+                        this.idCounter++;
                         actualToken = "";//add to token list
                     }
                     else if (this.reservedWord.Contains(actualToken))
                     {
                         paintString(actualToken, Color.Green, codeRichTextBox);
+                        tokens.Add(new Token(actualToken, "reservedWord", this.lineCounter, this.idCounter));
+                        this.idCounter++;
                         actualToken = "";//add to token list
                     }
                     else if (this.specialWords.Contains(actualToken))
                     {
                         paintString(actualToken, Color.Yellow, codeRichTextBox);
+                        tokens.Add(new Token(actualToken, "specialWord", this.lineCounter, this.idCounter));
+                        this.idCounter++;
                         actualToken = "";//add to token list
                     }
                     else if (aux == "verdadero" || aux == "falso")
                     {
                         paintString(actualToken, Color.Orange, codeRichTextBox);
+                        tokens.Add(new Token(actualToken, "boolean", this.lineCounter, this.idCounter));
+                        this.idCounter++;
                         actualToken = "";//add to token list
                     }
                     else {
                         paintString(actualToken, this.defaultTextColor, codeRichTextBox);
+                        tokens.Add(new Token(actualToken, "id", this.lineCounter, this.idCounter));
+                        this.idCounter++;
                         actualToken = "";//add to token list
                     }
                 }
