@@ -107,7 +107,7 @@ namespace compiler_app
             saveToolStripMenuItem_Click(sender, e);
             string tmpText = this.codeRichTextBox.Text;
             this.codeRichTextBox.Text = null;
-            this.painter.paintTestint(tmpText,this.codeRichTextBox,this.errorGridViewer);
+            this.painter.paintTestint(tmpText,this.codeRichTextBox,this.errorGridViewer,this.saveFileDialog1);
         }
 
         private void stopToolStripButton_Click(object sender, EventArgs e)

@@ -73,6 +73,7 @@
     <Compile Include="Archive.cs" />
     <Compile Include="ErrorControl.cs" />
     <Compile Include="extensionRegister.cs" />
+    <Compile Include="FileDotEngine.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

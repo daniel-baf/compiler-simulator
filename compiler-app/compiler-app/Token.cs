@@ -32,5 +32,21 @@ namespace compiler_app
         public void setID(int id) {
             this.ID = id;
         }
+
+        public string getType() {
+            return this.type;
+        }
+
+        public string getInfo() {
+            return this.info;
+        }
+
+        public int getID() {
+            return this.ID;
+        }
+
+        public int getLine() {
+            return this.line;
+        }
     }
 }

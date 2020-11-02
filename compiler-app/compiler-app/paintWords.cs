@@ -73,7 +73,7 @@ namespace compiler_app
         /*
          * get the text and gives colors
          */
-        public void paintTestint(String text, RichTextBox codeRichTextBox, DataGridView errorGridViewer)
+        public void paintTestint(String text, RichTextBox codeRichTextBox, DataGridView errorGridViewer, SaveFileDialog dotSaveFileDialog)
         {
 
             List<Token> tokens = new List<Token>();
@@ -91,6 +91,57 @@ namespace compiler_app
             Color actualColor = this.defaultTextColor;
             for (int i = 0; i < arrayChars.Length; i++) {
                 isJumpLine(arrayChars[i]);
+
+                if (i < arrayChars.Length - 1)
+                {
+                    if (isShortComment(arrayChars[i], arrayChars[i + 1]))//only a doble / open the special case 1
+                    {
+                        actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
+                        i += 2;
+                        isJumpLine(arrayChars[i]);
+                        if (i < arrayChars.Length) do
+                            {
+                                isJumpLine(arrayChars[i]);
+                                actualToken += arrayChars[i].ToString();
+                                continueD = arrayChars[i] != '\n';
+                                i++;
+                            } while (continueD && i < arrayChars.Length);
+                        paintString(actualToken, Color.Red, codeRichTextBox);
+                        actualToken = "";//restart
+                    }
+                    else if (isbeginLongComment(arrayChars[i], arrayChars[i + 1]))
+                    { // this ends anly with an * /
+                        actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
+                        i += 2;
+                        isJumpLine(arrayChars[i]);
+                        if (i < arrayChars.Length - 1) do
+                            {
+                                actionActive = true;
+                                actualToken += arrayChars[i].ToString();
+                                continueD = !isEndLongComment(arrayChars[i], arrayChars[i + 1]);
+                                i++;
+                                isJumpLine(arrayChars[i]);
+                                if (!continueD)
+                                {
+                                    actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
+                                    i += 2;
+                                    isJumpLine(arrayChars[i]);
+                                    actionActive = false;
+                                }
+                            } while (continueD && i < arrayChars.Length - 1);
+                        paintString(actualToken, Color.Red, codeRichTextBox);
+                        actualToken = "";// this token is excluded
+                    }
+
+                    //MANAGE ERROR
+                    if (actionActive)
+                    {
+                        actionActive = false;
+                        errorController.addError(errorGridViewer, lineCounter, 0);//0 is for long comments no close
+                    }
+                }
+
+
                 //looking a "text"
                 if (arrayChars[i] == '\"' && i < arrayChars.Length) {
                     do
@@ -259,60 +310,14 @@ namespace compiler_app
                     }
                 }
 
-                if (i < arrayChars.Length - 1)
-                {
-                    if (isShortComment(arrayChars[i], arrayChars[i + 1]))//only a doble / open the special case 1
-                    {
-                        actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
-                        i += 2;
-                        isJumpLine(arrayChars[i]);
-                        if (i < arrayChars.Length) do
-                            {
-                                actualToken += arrayChars[i].ToString();
-                                continueD = arrayChars[i] != '\n';
-                                i++;
-                                isJumpLine(arrayChars[i]);
-                            } while (continueD && i < arrayChars.Length);
-                        paintString(actualToken, Color.Red, codeRichTextBox);
-                        actualToken = "";//restart
-                    }
-                    else if (isbeginLongComment(arrayChars[i], arrayChars[i + 1]))
-                    { // this ends anly with an * /
-                        actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
-                        i += 2;
-                        isJumpLine(arrayChars[i]);
-                        if (i < arrayChars.Length - 1) do
-                            {
-                                actionActive = true;
-                                actualToken += arrayChars[i].ToString();
-                                continueD = !isEndLongComment(arrayChars[i], arrayChars[i + 1]);
-                                i++;
-                                isJumpLine(arrayChars[i]);
-                                if (!continueD)
-                                {
-                                    actualToken += arrayChars[i].ToString() + arrayChars[i + 1].ToString();
-                                    i += 2;
-                                    isJumpLine(arrayChars[i]);
-                                    actionActive = false;
-                                }
-                            } while (continueD && i < arrayChars.Length - 1);
-                        paintString(actualToken, Color.Red, codeRichTextBox);
-                        actualToken = "";// i have to add the token
-                    }
-
-                    //MANAGE ERROR
-                    if (actionActive)
-                    {
-                        actionActive = false;
-                        errorController.addError(errorGridViewer, lineCounter, 0);//0 is for long comments no close
-                    }
-                }
-
                 if (i < arrayChars.Length){
                     isJumpLine(arrayChars[i]);
                     paint(codeRichTextBox, arrayChars[i], actualColor);
                 }   
             }
+
+            GraphvizDrawer grd = new GraphvizDrawer(tokens);
+            grd.createImg(dotSaveFileDialog);
         }
 
         private void paintString(string txt, Color color, RichTextBox codeRichTextBox)
