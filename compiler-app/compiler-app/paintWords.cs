@@ -313,6 +313,8 @@ namespace compiler_app
                     paint(codeRichTextBox, arrayChars[i], actualColor);
                 }   
             }
+
+
         }
 
         private void paintString(string txt, Color color, RichTextBox codeRichTextBox)
